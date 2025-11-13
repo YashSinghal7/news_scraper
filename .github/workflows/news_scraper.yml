@@ -13,7 +13,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          persist-credentials: false  # Needed to set up custom git push auth below
+          persist-credentials: false  # Disable automatic token use to allow custom git auth
 
       - name: Set up Python 3.10
         uses: actions/setup-python@v4
@@ -39,15 +39,20 @@ jobs:
       - name: Commit and push updated database
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_REF: ${{ github.ref }}
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Check if the database file changed
+          # Set remote URL with token for authentication
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+
+          # Commit and push if the database file changed
           if git status --porcelain | grep -q "news_articles.db"; then
             git add news_articles.db
             git commit -m "Update news_articles.db with latest scraped data [skip ci]"
-            git push origin HEAD:${{ github.ref }}
+            git push origin HEAD:${GITHUB_REF}
           else
             echo "No changes in news_articles.db to commit"
           fi
