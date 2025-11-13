@@ -34,8 +34,6 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
           # Install the core dependencies required by the script
           pip install requests beautifulsoup4 trafilatura selenium
-          # Remove schedule as it's no longer used
-          pip uninstall -y schedule
 
       # --- THIS STEP IS NO LONGER NEEDED ---
       # The 'browser-actions/setup-chrome' step handles this reliably.
