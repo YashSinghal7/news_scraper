@@ -1,0 +1,41 @@
+2025-11-13 18:56:41,738 - INFO - Initializing database connection at: news_articles.db
+2025-11-13 18:56:41,739 - INFO - --- Scraper service started (CI Mode: Run Once) ---
+2025-11-13 18:56:41,739 - INFO - --- Starting new scraping job ---
+2025-11-13 18:56:41,739 - INFO - Creating new robust session with 3 retries on 5xx errors.
+2025-11-13 18:56:41,739 - INFO - Proxy is DISABLED.
+2025-11-13 18:56:41,739 - INFO - Attempting to initialize Selenium driver for this run...
+2025-11-13 18:56:41,739 - INFO - Initializing headless Selenium Chrome driver (using SeleniumManager)...
+2025-11-13 18:56:47,584 - INFO - Selenium driver initialized successfully.
+2025-11-13 18:56:47,584 - INFO - Starting scrape for BBC RSS feed: http://feeds.bbci.co.uk/news/world/rss.xml
+2025-11-13 18:56:48,075 - INFO - Found 23 articles in BBC RSS feed. Processing up to 1.
+2025-11-13 18:56:48,075 - INFO - [BBC] Article: https://www.bbc.com/news/articles/cglgj08erywo?at_medium=RSS&at_campaign=rss
+2025-11-13 18:56:48,075 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-13 18:56:48,248 - INFO - [BBC] Success with 'requests_browser'. Found content.
+2025-11-13 18:56:48,318 - INFO - Duplicate article skipped: Epstein email says Andrew had photo taken with Virginia Giuffre from BBC
+2025-11-13 18:56:48,880 - INFO - Starting scrape for Times of India RSS feed: https://timesofindia.indiatimes.com/rssfeeds/296589292.cms
+2025-11-13 18:56:49,061 - INFO - Found 20 articles in Times of India RSS feed. Processing up to 1.
+2025-11-13 18:56:49,061 - INFO - [Times of India] Article: https://timesofindia.indiatimes.com/world/uk/bride-dies-on-wedding-day-just-hours-after-saying-i-do-to-childhood-sweetheart/articleshow/125304574.cms
+2025-11-13 18:56:49,062 - INFO - [Times of India] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-13 18:57:35,374 - INFO - [Times of India] Success with 'selenium_browser'. Found content.
+2025-11-13 18:57:35,568 - INFO - Duplicate article skipped: Bride dies on wedding day just hours after saying ‘I do’ to childhood sweetheart | World News - The Times of India from Times of India
+2025-11-13 18:57:36,644 - INFO - Starting scrape for The Guardian RSS feed: https://www.theguardian.com/world/rss
+2025-11-13 18:57:36,947 - INFO - Found 45 articles in The Guardian RSS feed. Processing up to 1.
+2025-11-13 18:57:36,947 - INFO - [The Guardian] Article: https://www.theguardian.com/world/2025/nov/12/state-sanctioned-fuel-smuggling-cost-libya-20bn-over-three-years-report
+2025-11-13 18:57:36,948 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-13 18:57:36,988 - INFO - [The Guardian] Success with 'requests_browser'. Found content.
+2025-11-13 18:57:37,025 - INFO - Duplicate article skipped: State-sanctioned fuel smuggling cost Libya $20bn over three years – report | Libya | The Guardian from The Guardian
+2025-11-13 18:57:37,725 - INFO - Starting scrape for The Hindu RSS feed: https://www.thehindu.com/news/national/feeder/default.rss
+2025-11-13 18:57:37,999 - INFO - Found 100 articles in The Hindu RSS feed. Processing up to 1.
+2025-11-13 18:57:37,999 - INFO - [The Hindu] Article: https://www.thehindu.com/news/national/telangana/radical-centrism-is-the-way-forward-for-india-says-shashi-tharoor/article70276799.ece
+2025-11-13 18:57:37,999 - INFO - [The Hindu] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-13 18:57:46,195 - INFO - [The Hindu] Success with 'selenium_browser'. Found content.
+2025-11-13 18:57:46,261 - INFO - Duplicate article skipped: Radical centrism is the way forward for India, says Shashi Tharoor - The Hindu from The Hindu
+2025-11-13 18:57:47,605 - INFO - Starting scrape for Reuters RSS feed: https://feeds.reuters.com/reuters/worldNews
+2025-11-13 18:57:47,692 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7ff0ba700fd0>: Failed to resolve 'feeds.reuters.com' ([Errno -2] Name or service not known)")': /reuters/worldNews
+2025-11-13 18:57:49,790 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7ff0ba482920>: Failed to resolve 'feeds.reuters.com' ([Errno -2] Name or service not known)")': /reuters/worldNews
+2025-11-13 18:57:53,897 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7ff0ba482b30>: Failed to resolve 'feeds.reuters.com' ([Errno -2] Name or service not known)")': /reuters/worldNews
+2025-11-13 18:57:53,946 - ERROR - Failed to fetch Reuters RSS feed: HTTPSConnectionPool(host='feeds.reuters.com', port=443): Max retries exceeded with url: /reuters/worldNews (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7ff0ba482d10>: Failed to resolve 'feeds.reuters.com' ([Errno -2] Name or service not known)"))
+2025-11-13 18:57:53,946 - INFO - Scraped: 1 BBC, 1 Times of India, 1 The Guardian, 1 The Hindu, 0 Reuters articles. (Total saved: 4)
+2025-11-13 18:57:53,946 - INFO - Shutting down Selenium driver for this run.
+2025-11-13 18:57:54,486 - INFO - --- Scraping job finished ---
+2025-11-13 18:57:54,487 - INFO - --- Scraper service stopped and database connection closed. ---
