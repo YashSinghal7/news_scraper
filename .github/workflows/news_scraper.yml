@@ -2,8 +2,8 @@ name: Run News Scraper with logs
 
 on:
   schedule:
-    - cron: '* * * * *'  # every minute
-  workflow_dispatch:       # manual trigger
+    - cron: '* * * * *'  # Run every 6 hours
+  workflow_dispatch:      # manual trigger
 
 jobs:
   scrape_news:
@@ -23,7 +23,12 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          # Install from requirements.txt if it exists
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          # Install the core dependencies required by the script
+          pip install requests beautifulsoup4 trafilatura selenium
+          # Remove schedule as it's no longer used
+          pip uninstall -y schedule
 
       - name: Install Chromium and ChromeDriver
         run: |
