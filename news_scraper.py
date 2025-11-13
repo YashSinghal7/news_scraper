@@ -3,7 +3,7 @@
 #
 # How many articles to get from each source (e.g., 25)
 # This is a 'max' value. If a feed only has 20 articles, it will get 20.
-MAX_ARTICLES_PER_SOURCE = 20
+MAX_ARTICLES_PER_SOURCE = 25
 #
 # --- NEW: PROXY CONFIGURATION ---
 # Set 'use_proxies' to True to route all requests (Requests & Selenium)
@@ -31,11 +31,12 @@ import logging
 import sqlite3
 from datetime import datetime
 import random # <-- For User-Agent rotation
+import os # <-- NEW: To check for CI environment paths
 
 # --- UPDATED: Import Selenium ---
 try:
     from selenium import webdriver
-    # from selenium.webdriver.chrome.service import Service as ChromeService # <-- REMOVED
+    from selenium.webdriver.chrome.service import Service as ChromeService # <-- RE-ADDED
     from selenium.webdriver.chrome.options import Options as ChromeOptions
     from selenium.common.exceptions import WebDriverException
     # --- REMOVED: webdriver_manager is no longer needed ---
@@ -108,20 +109,28 @@ def get_headers(header_type):
 def create_selenium_driver():
     """
     Initializes and returns a headless Selenium Chrome WebDriver.
-    This now uses Selenium's built-in SeleniumManager, NOT webdriver-manager.
-    It will also configure a proxy if one is set in PROXY_SETTINGS.
+    
+    --- NEW FOR GITHUB ACTIONS ---
+    Checks for the 'chromium-browser' binary installed by apt-get in the CI.
+    If not found (e.g., running locally), it falls back to SeleniumManager
+    to find the locally installed Chrome.
     """
     if not SELENIUM_AVAILABLE:
         logging.error("Cannot create Selenium driver, library not found.")
         return None
         
-    logging.info("Initializing headless Selenium Chrome driver (using SeleniumManager)...")
+    logging.info("Initializing headless Selenium Chrome driver...")
+    
+    # --- CI/Linux-specific paths ---
+    CI_BROWSER_PATH = "/usr/bin/chromium-browser"
+    CI_DRIVER_PATH = "/usr/bin/chromium-chromedriver"
+    
     try:
         options = ChromeOptions()
         options.add_argument("--headless=new") # Use "new" headless mode
         options.add_argument("--disable-gpu")
-        options.add_argument("--no-sandbox")
-        options.add_argument("--disable-dev-shm-usage")
+        options.add_argument("--no-sandbox") # Required for running as root in CI
+        options.add_argument("--disable-dev-shm-usage") # Required for CI
         options.add_argument(f"user-agent={random.choice(BROWSER_USER_AGENTS)}") # Use random agent
         
         # --- NEW: Add proxy to Selenium ---
@@ -129,13 +138,19 @@ def create_selenium_driver():
             logging.info(f"Configuring Selenium driver to use proxy.")
             options.add_argument(f"--proxy-server={PROXY_SETTINGS['proxy_url']}")
         # ----------------------------------
-        
-        # --- THIS IS THE FIX ---
-        # We no longer pass a 'service' object with ChromeDriverManager.
-        # Selenium (v4.6.0+) will now automatically detect your
-        # Chrome v142 and download the correct v142 chromedriver.
-        driver = webdriver.Chrome(options=options)
-        # -----------------------
+
+        # --- THIS IS THE GITHUB ACTIONS FIX ---
+        if os.path.exists(CI_BROWSER_PATH):
+            # We are in the GitHub Actions environment
+            logging.info(f"CI environment detected. Using binaries at: {CI_BROWSER_PATH} and {CI_DRIVER_PATH}")
+            options.binary_location = CI_BROWSER_PATH
+            service = ChromeService(executable_path=CI_DRIVER_PATH)
+            driver = webdriver.Chrome(service=service, options=options)
+        else:
+            # We are running locally, use SeleniumManager (the default)
+            logging.info("Local environment detected. Using SeleniumManager to find Chrome.")
+            driver = webdriver.Chrome(options=options)
+        # ------------------------------------
         
         # --- TIMEOUT FIX: Increase timeout to 60 seconds ---
         driver.set_page_load_timeout(60) # 60 second timeout
