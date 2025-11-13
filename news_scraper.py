@@ -31,12 +31,12 @@ import logging
 import sqlite3
 from datetime import datetime
 import random # <-- For User-Agent rotation
-import os # <-- NEW: To check for CI environment paths
+import os # <-- REMOVED: No longer needed for CI path check
 
 # --- UPDATED: Import Selenium ---
 try:
     from selenium import webdriver
-    from selenium.webdriver.chrome.service import Service as ChromeService # <-- RE-ADDED
+    # from selenium.webdriver.chrome.service import Service as ChromeService # <-- REMOVED
     from selenium.webdriver.chrome.options import Options as ChromeOptions
     from selenium.common.exceptions import WebDriverException
     # --- REMOVED: webdriver_manager is no longer needed ---
@@ -110,20 +110,16 @@ def create_selenium_driver():
     """
     Initializes and returns a headless Selenium Chrome WebDriver.
     
-    --- NEW FOR GITHUB ACTIONS ---
-    Checks for the 'chromium-browser' binary installed by apt-get in the CI.
-    If not found (e.g., running locally), it falls back to SeleniumManager
-    to find the locally installed Chrome.
+    --- REVERTED FIX ---
+    We now rely *only* on Selenium's built-in SeleniumManager.
+    The GitHub Action workflow is responsible for installing Chrome
+    and its matching driver onto the system PATH.
     """
     if not SELENIUM_AVAILABLE:
         logging.error("Cannot create Selenium driver, library not found.")
         return None
         
-    logging.info("Initializing headless Selenium Chrome driver...")
-    
-    # --- CI/Linux-specific paths ---
-    CI_BROWSER_PATH = "/usr/bin/chromium-browser"
-    CI_DRIVER_PATH = "/usr/bin/chromium-chromedriver"
+    logging.info("Initializing headless Selenium Chrome driver (using SeleniumManager)...")
     
     try:
         options = ChromeOptions()
@@ -139,17 +135,11 @@ def create_selenium_driver():
             options.add_argument(f"--proxy-server={PROXY_SETTINGS['proxy_url']}")
         # ----------------------------------
 
-        # --- THIS IS THE GITHUB ACTIONS FIX ---
-        if os.path.exists(CI_BROWSER_PATH):
-            # We are in the GitHub Actions environment
-            logging.info(f"CI environment detected. Using binaries at: {CI_BROWSER_PATH} and {CI_DRIVER_PATH}")
-            options.binary_location = CI_BROWSER_PATH
-            service = ChromeService(executable_path=CI_DRIVER_PATH)
-            driver = webdriver.Chrome(service=service, options=options)
-        else:
-            # We are running locally, use SeleniumManager (the default)
-            logging.info("Local environment detected. Using SeleniumManager to find Chrome.")
-            driver = webdriver.Chrome(options=options)
+        # --- THIS IS THE FIX ---
+        # We no longer check for OS paths or use webdriver-manager.
+        # We let SeleniumManager find the driver on the PATH,
+        # which the GitHub Action (`browser-actions/setup-chrome`) will provide.
+        driver = webdriver.Chrome(options=options)
         # ------------------------------------
         
         # --- TIMEOUT FIX: Increase timeout to 60 seconds ---
