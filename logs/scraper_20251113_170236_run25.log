@@ -1,0 +1,406 @@
+2025-11-13 17:01:02,104 - INFO - Initializing database connection at: news_articles.db
+2025-11-13 17:01:02,105 - INFO - --- Scraper service started (CI Mode: Run Once) ---
+2025-11-13 17:01:02,105 - INFO - --- Starting new scraping job ---
+2025-11-13 17:01:02,105 - INFO - Creating new robust session with 3 retries on 5xx errors.
+2025-11-13 17:01:02,105 - INFO - Proxy is DISABLED.
+2025-11-13 17:01:02,105 - INFO - Attempting to initialize Selenium driver for this run...
+2025-11-13 17:01:02,105 - INFO - Initializing headless Selenium Chrome driver (using SeleniumManager)...
+2025-11-13 17:01:03,005 - CRITICAL - Failed to initialize Selenium driver. This can happen if Chrome updates. Error: Message: session not created
+from unknown error: no chrome binary at /usr/bin/google-chrome; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+#0 0x558a82823e3a <unknown>
+#1 0x558a822d379b <unknown>
+#2 0x558a8230e5d9 <unknown>
+#3 0x558a8230d33f <unknown>
+#4 0x558a8235c9bc <unknown>
+#5 0x558a8235c136 <unknown>
+#6 0x558a8234dd73 <unknown>
+#7 0x558a8231a35c <unknown>
+#8 0x558a8231b051 <unknown>
+#9 0x558a827ee13f <unknown>
+#10 0x558a827f1258 <unknown>
+#11 0x558a827d781c <unknown>
+#12 0x558a827f1a1e <unknown>
+#13 0x558a827c031e <unknown>
+#14 0x558a82811f18 <unknown>
+#15 0x558a82812134 <unknown>
+#16 0x558a82822afc <unknown>
+#17 0x7f8399c94ac3 <unknown>
+
+2025-11-13 17:01:03,005 - WARNING - Selenium driver failed to start. Sites requiring Selenium will fail.
+2025-11-13 17:01:03,005 - INFO - Starting scrape for BBC RSS feed: http://feeds.bbci.co.uk/news/world/rss.xml
+2025-11-13 17:01:03,277 - INFO - Found 23 articles in BBC RSS feed. Processing up to 20.
+2025-11-13 17:01:03,277 - INFO - [BBC] Article: https://www.bbc.com/news/articles/cglgj08erywo?at_medium=RSS&at_campaign=rss
+2025-11-13 17:01:03,277 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-13 17:01:03,447 - INFO - [BBC] Success with 'requests_browser'. Found content.
+2025-11-13 17:01:03,490 - INFO - Duplicate article skipped: Epstein email says Andrew had photo taken with Virginia Giuffre from BBC
+2025-11-13 17:01:04,367 - INFO - [BBC] Article: https://www.bbc.com/news/articles/c3rj0d97ynvo?at_medium=RSS&at_campaign=rss
+2025-11-13 17:01:04,367 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-13 17:01:04,407 - INFO - [BBC] Success with 'requests_browser'. Found content.
+2025-11-13 17:01:04,441 - INFO - Duplicate article skipped: What we know about the latest Epstein emails referencing Trump from BBC
+2025-11-13 17:01:05,544 - INFO - [BBC] Article: https://www.bbc.com/news/articles/cz917nvj7qeo?at_medium=RSS&at_campaign=rss
+2025-11-13 17:01:05,544 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-13 17:01:05,580 - INFO - [BBC] Success with 'requests_browser'. Found content.
+2025-11-13 17:01:05,613 - INFO - Duplicate article skipped: Trump celebrates as Democrats face fallout from end of shutdown from BBC
+2025-11-13 17:01:06,960 - INFO - [BBC] Article: https://www.bbc.com/news/articles/c9wv22qjq8eo?at_medium=RSS&at_campaign=rss
+2025-11-13 17:01:06,960 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-13 17:01:06,996 - INFO - [BBC] Success with 'requests_browser'. Found content.
+2025-11-13 17:01:07,029 - INFO - Duplicate article skipped: Suneung: Blind students sit 13-hour college entry exam in South Korea from BBC
+2025-11-13 17:01:08,145 - INFO - [BBC] Article: https://www.bbc.com/news/articles/cddrj3mzgz2o?at_medium=RSS&at_campaign=rss
+2025-11-13 17:01:08,145 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-13 17:01:08,179 - INFO - [BBC] Success with 'requests_browser'. Found content.
+2025-11-13 17:01:08,211 - INFO - Duplicate article skipped: Musalia Mudavadi says over 200 Kenyans fighting for Russia in Ukraine from BBC
+2025-11-13 17:01:09,222 - INFO - [BBC] Article: https://www.bbc.com/news/articles/c17p1nwy7q8o?at_medium=RSS&at_campaign=rss
+2025-11-13 17:01:09,222 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-13 17:01:09,261 - INFO - [BBC] Success with 'requests_browser'. Found content.
+2025-11-13 17:01:09,295 - INFO - Duplicate article skipped: Sudan conflict: Marco Rubio calls for international action to cut weapons supplies to RSF from BBC
+2025-11-13 17:01:09,822 - INFO - [BBC] Article: https://www.bbc.com/news/articles/cd679n9lnx5o?at_medium=RSS&at_campaign=rss
+2025-11-13 17:01:09,822 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-13 17:01:09,855 - INFO - [BBC] Success with 'requests_browser'. Found content.
+2025-11-13 17:01:09,886 - INFO - Duplicate article skipped: Steam Machine: Valve rivals Xbox and PlayStation with new console from BBC
+2025-11-13 17:01:11,054 - INFO - [BBC] Article: https://www.bbc.com/news/articles/cd7rlrzq88wo?at_medium=RSS&at_campaign=rss
+2025-11-13 17:01:11,054 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-13 17:01:11,087 - INFO - [BBC] Success with 'requests_browser'. Found content.
+2025-11-13 17:01:11,118 - INFO - Duplicate article skipped: Nigeria cancels mother-tongue teaching in primary schools and reverts to English from BBC
+2025-11-13 17:01:12,098 - INFO - [BBC] Article: https://www.bbc.com/news/articles/cly45dqpwywo?at_medium=RSS&at_campaign=rss
+2025-11-13 17:01:12,098 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-13 17:01:12,128 - INFO - [BBC] Success with 'requests_browser'. Found content.
+2025-11-13 17:01:12,159 - INFO - Duplicate article skipped: Kim Kardashian's shapewear brand Skims hits $5bn valuation from BBC
+2025-11-13 17:01:12,666 - INFO - [BBC] Article: https://www.bbc.com/news/articles/c1wlywx5vv3o?at_medium=RSS&at_campaign=rss
+2025-11-13 17:01:12,666 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-13 17:01:12,696 - INFO - [BBC] Success with 'requests_browser'. Found content.
+2025-11-13 17:01:12,727 - INFO - Duplicate article skipped: French relief as Algeria frees novelist Boualem Sansal from BBC
+2025-11-13 17:01:13,956 - INFO - [BBC] Article: https://www.bbc.com/news/articles/c93d4y8ggvqo?at_medium=RSS&at_campaign=rss
+2025-11-13 17:01:13,956 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-13 17:01:13,986 - INFO - [BBC] Success with 'requests_browser'. Found content.
+2025-11-13 17:01:14,016 - INFO - Duplicate article skipped: Ketamine disguised as tea keeps washing ashore on South Korea's Jeju island from BBC
+2025-11-13 17:01:14,817 - INFO - [BBC] Article: https://www.bbc.com/news/articles/ceq0e7q7vl8o?at_medium=RSS&at_campaign=rss
+2025-11-13 17:01:14,817 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-13 17:01:14,855 - INFO - [BBC] Success with 'requests_browser'. Found content.
+2025-11-13 17:01:14,908 - INFO - Duplicate article skipped: South Sudan President Salva Kiir sacks Vice-President Bol Mel from BBC
+2025-11-13 17:01:16,212 - INFO - [BBC] Article: https://www.bbc.com/news/articles/c620q30w0q0o?at_medium=RSS&at_campaign=rss
+2025-11-13 17:01:16,212 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-13 17:01:16,246 - INFO - [BBC] Success with 'requests_browser'. Found content.
+2025-11-13 17:01:16,278 - INFO - Duplicate article skipped: Fossil fuel emissions rise again - but renewables boom offers hope for climate from BBC
+2025-11-13 17:01:17,265 - INFO - [BBC] Article: https://www.bbc.com/news/articles/c6291204278o?at_medium=RSS&at_campaign=rss
+2025-11-13 17:01:17,265 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-13 17:01:17,302 - INFO - [BBC] Success with 'requests_browser'. Found content.
+2025-11-13 17:01:17,335 - INFO - Duplicate article skipped: France remembers Bataclan attacks but knows enemy has not gone away from BBC
+2025-11-13 17:01:17,843 - INFO - [BBC] Article: https://www.bbc.com/news/articles/cly98qp99l8o?at_medium=RSS&at_campaign=rss
+2025-11-13 17:01:17,843 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-13 17:01:17,888 - INFO - [BBC] Success with 'requests_browser'. Found content.
+2025-11-13 17:01:17,925 - INFO - Duplicate article skipped: Why Ukraine is bracing for its 'worst winter' of the war from BBC
+2025-11-13 17:01:19,050 - INFO - [BBC] Article: https://www.bbc.com/news/articles/cj41g75pe20o?at_medium=RSS&at_campaign=rss
+2025-11-13 17:01:19,050 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-13 17:01:19,084 - INFO - [BBC] Success with 'requests_browser'. Found content.
+2025-11-13 17:01:19,116 - INFO - Duplicate article skipped: Stranger Things cast and creators on show's ending and spin-off plans from BBC
+2025-11-13 17:01:20,410 - INFO - [BBC] Article: https://www.bbc.com/news/articles/cn51qdg5ywgo?at_medium=RSS&at_campaign=rss
+2025-11-13 17:01:20,410 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-13 17:01:20,442 - INFO - [BBC] Success with 'requests_browser'. Found content.
+2025-11-13 17:01:20,471 - INFO - Duplicate article skipped: Caste census: The case for and against counting castes in India from BBC
+2025-11-13 17:01:21,496 - INFO - [BBC] Article: https://www.bbc.com/news/articles/c1d0ydl7dypo?at_medium=RSS&at_campaign=rss
+2025-11-13 17:01:21,496 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-13 17:01:21,535 - INFO - [BBC] Success with 'requests_browser'. Found content.
+2025-11-13 17:01:21,569 - INFO - Duplicate article skipped: The Museum of West African Art (Mowaa) and the row over Nigeria's Benin Bronzes from BBC
+2025-11-13 17:01:22,397 - INFO - [BBC] Article: https://www.bbc.com/news/videos/crre8g5e45jo?at_medium=RSS&at_campaign=rss
+2025-11-13 17:01:22,397 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-13 17:01:22,446 - INFO - [BBC] Success with 'requests_browser'. Found content.
+2025-11-13 17:01:22,482 - INFO - Duplicate article skipped: Watch: Russia's AI robot falls seconds after being unveiled from BBC
+2025-11-13 17:01:23,042 - INFO - [BBC] Article: https://www.bbc.com/news/videos/ckg45vpyg3ro?at_medium=RSS&at_campaign=rss
+2025-11-13 17:01:23,042 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-13 17:01:23,092 - INFO - [BBC] Success with 'requests_browser'. Found content.
+2025-11-13 17:01:23,128 - INFO - Duplicate article skipped: Watch: Australian windsurfer escapes shark attack from BBC
+2025-11-13 17:01:24,335 - INFO - Starting scrape for Times of India RSS feed: https://timesofindia.indiatimes.com/rssfeeds/296589292.cms
+2025-11-13 17:01:24,705 - INFO - Found 20 articles in Times of India RSS feed. Processing up to 20.
+2025-11-13 17:01:24,705 - INFO - [Times of India] Article: https://timesofindia.indiatimes.com/world/us/30-americans-and-3-h-1bs-vs-30-indians-ben-shapiro-draws-flak-for-defending-h-1b-says-his-words-taken-out-of-context/articleshow/125303888.cms
+2025-11-13 17:01:24,705 - INFO - [Times of India] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-13 17:01:24,705 - ERROR - [Times of India] Selenium strategy selected but driver is not available. Skipping.
+2025-11-13 17:01:24,705 - ERROR - [Times of India] All scrape strategies failed for https://timesofindia.indiatimes.com/world/us/30-americans-and-3-h-1bs-vs-30-indians-ben-shapiro-draws-flak-for-defending-h-1b-says-his-words-taken-out-of-context/articleshow/125303888.cms. Falling back to RSS description.
+2025-11-13 17:01:24,705 - INFO - Duplicate article skipped: '30 Americans and 3 H-1Bs vs 30 Indians': Ben Shapiro draws flak for defending H-1B, says his words taken out of context from Times of India
+2025-11-13 17:01:25,908 - INFO - [Times of India] Article: https://timesofindia.indiatimes.com/world/middle-east/iran-as-traffic-chokes-tehran-women-turn-to-motorbikes-despite-the-ban/articleshow/125302227.cms
+2025-11-13 17:01:25,908 - INFO - [Times of India] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-13 17:01:25,908 - ERROR - [Times of India] Selenium strategy selected but driver is not available. Skipping.
+2025-11-13 17:01:25,908 - ERROR - [Times of India] All scrape strategies failed for https://timesofindia.indiatimes.com/world/middle-east/iran-as-traffic-chokes-tehran-women-turn-to-motorbikes-despite-the-ban/articleshow/125302227.cms. Falling back to RSS description.
+2025-11-13 17:01:25,908 - INFO - Duplicate article skipped: Iran: As traffic chokes Tehran, Women turn to motorbikes despite the ban from Times of India
+2025-11-13 17:01:27,089 - INFO - [Times of India] Article: https://timesofindia.indiatimes.com/world/us/we-live-in-a-fascist-country-american-airlines-flight-diverted-over-passengers-outburst-4-congressmen-were-flying-to-vote-on-shutdown/articleshow/125302344.cms
+2025-11-13 17:01:27,090 - INFO - [Times of India] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-13 17:01:27,090 - ERROR - [Times of India] Selenium strategy selected but driver is not available. Skipping.
+2025-11-13 17:01:27,090 - ERROR - [Times of India] All scrape strategies failed for https://timesofindia.indiatimes.com/world/us/we-live-in-a-fascist-country-american-airlines-flight-diverted-over-passengers-outburst-4-congressmen-were-flying-to-vote-on-shutdown/articleshow/125302344.cms. Falling back to RSS description.
+2025-11-13 17:01:27,090 - INFO - Duplicate article skipped: 'We live in a fascist country': American Airlines flight diverted over passenger's outburst; 4 Congressmen were flying to vote on shutdown from Times of India
+2025-11-13 17:01:27,786 - INFO - [Times of India] Article: https://timesofindia.indiatimes.com/world/us/the-zohran-effect-50000-apply-to-work-in-mamdanis-administration/articleshow/125301651.cms
+2025-11-13 17:01:27,786 - INFO - [Times of India] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-13 17:01:27,786 - ERROR - [Times of India] Selenium strategy selected but driver is not available. Skipping.
+2025-11-13 17:01:27,786 - ERROR - [Times of India] All scrape strategies failed for https://timesofindia.indiatimes.com/world/us/the-zohran-effect-50000-apply-to-work-in-mamdanis-administration/articleshow/125301651.cms. Falling back to RSS description.
+2025-11-13 17:01:27,786 - INFO - Duplicate article skipped: The Zohran Effect: 50,000 apply to work in Mamdani's administration from Times of India
+2025-11-13 17:01:28,362 - INFO - [Times of India] Article: https://timesofindia.indiatimes.com/world/middle-east/experience-the-future-of-aviation-dubai-airports-unveils-sustainability-showcase-at-dubai-airshow-2025running-1721-november/articleshow/125301023.cms
+2025-11-13 17:01:28,362 - INFO - [Times of India] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-13 17:01:28,362 - ERROR - [Times of India] Selenium strategy selected but driver is not available. Skipping.
+2025-11-13 17:01:28,362 - ERROR - [Times of India] All scrape strategies failed for https://timesofindia.indiatimes.com/world/middle-east/experience-the-future-of-aviation-dubai-airports-unveils-sustainability-showcase-at-dubai-airshow-2025running-1721-november/articleshow/125301023.cms. Falling back to RSS description.
+2025-11-13 17:01:28,362 - INFO - Duplicate article skipped: Experience the future of aviation: Dubai Airports unveils sustainability showcase at Dubai Airshow 2025, running 17–21 November from Times of India
+2025-11-13 17:01:29,387 - INFO - [Times of India] Article: https://timesofindia.indiatimes.com/world/us/dog-that-hasnt-barked-do-new-epstein-emails-exonerate-trump-decoding-the-dem-release/articleshow/125300562.cms
+2025-11-13 17:01:29,387 - INFO - [Times of India] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-13 17:01:29,387 - ERROR - [Times of India] Selenium strategy selected but driver is not available. Skipping.
+2025-11-13 17:01:29,387 - ERROR - [Times of India] All scrape strategies failed for https://timesofindia.indiatimes.com/world/us/dog-that-hasnt-barked-do-new-epstein-emails-exonerate-trump-decoding-the-dem-release/articleshow/125300562.cms. Falling back to RSS description.
+2025-11-13 17:01:29,387 - INFO - Duplicate article skipped: 'Dog that hasn't barked': Do new Epstein emails exonerate Trump? Decoding the Democrats release from Times of India
+2025-11-13 17:01:30,055 - INFO - [Times of India] Article: https://timesofindia.indiatimes.com/world/us/indians-bring-their-whole-village-to-america-ann-coulter-says-everyone-knows-indians-and-chinese-openly-cheat/articleshow/125301209.cms
+2025-11-13 17:01:30,055 - INFO - [Times of India] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-13 17:01:30,055 - ERROR - [Times of India] Selenium strategy selected but driver is not available. Skipping.
+2025-11-13 17:01:30,055 - ERROR - [Times of India] All scrape strategies failed for https://timesofindia.indiatimes.com/world/us/indians-bring-their-whole-village-to-america-ann-coulter-says-everyone-knows-indians-and-chinese-openly-cheat/articleshow/125301209.cms. Falling back to RSS description.
+2025-11-13 17:01:30,056 - INFO - Duplicate article skipped: Indians bring their whole village to America: Ann Coulter says everyone knows Indians and Chinese openly cheat from Times of India
+2025-11-13 17:01:31,161 - INFO - [Times of India] Article: https://timesofindia.indiatimes.com/world/us-streamers/asmongold-triggers-controversy-after-intense-pressure-on-donald-trump-around-epstein-files-rises-with-new-unexpected-twists/articleshow/125300531.cms
+2025-11-13 17:01:31,161 - INFO - [Times of India] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-13 17:01:31,161 - ERROR - [Times of India] Selenium strategy selected but driver is not available. Skipping.
+2025-11-13 17:01:31,161 - ERROR - [Times of India] All scrape strategies failed for https://timesofindia.indiatimes.com/world/us-streamers/asmongold-triggers-controversy-after-intense-pressure-on-donald-trump-around-epstein-files-rises-with-new-unexpected-twists/articleshow/125300531.cms. Falling back to RSS description.
+2025-11-13 17:01:31,162 - INFO - Duplicate article skipped: Asmongold triggers controversy after intense pressure on Donald Trump around Epstein files rises with new unexpected twists from Times of India
+2025-11-13 17:01:32,649 - INFO - [Times of India] Article: https://timesofindia.indiatimes.com/world/us/glen-powell-set-to-host-snl-this-week-promo-goes-viral-for-his-iconic-walking-like-walken-moment/articleshow/125300536.cms
+2025-11-13 17:01:32,649 - INFO - [Times of India] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-13 17:01:32,649 - ERROR - [Times of India] Selenium strategy selected but driver is not available. Skipping.
+2025-11-13 17:01:32,649 - ERROR - [Times of India] All scrape strategies failed for https://timesofindia.indiatimes.com/world/us/glen-powell-set-to-host-snl-this-week-promo-goes-viral-for-his-iconic-walking-like-walken-moment/articleshow/125300536.cms. Falling back to RSS description.
+2025-11-13 17:01:32,649 - INFO - Duplicate article skipped: Glen Powell set to host SNL this week: Promo goes viral for his iconic ‘walking like Walken’ moment from Times of India
+2025-11-13 17:01:33,667 - INFO - [Times of India] Article: https://timesofindia.indiatimes.com/world/us/if-we-end-h-1b-tomorrow-influencer-asks-maga-not-to-rant-against-trump-he-knows-something-that-no-one-does/articleshow/125299924.cms
+2025-11-13 17:01:33,667 - INFO - [Times of India] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-13 17:01:33,667 - ERROR - [Times of India] Selenium strategy selected but driver is not available. Skipping.
+2025-11-13 17:01:33,667 - ERROR - [Times of India] All scrape strategies failed for https://timesofindia.indiatimes.com/world/us/if-we-end-h-1b-tomorrow-influencer-asks-maga-not-to-rant-against-trump-he-knows-something-that-no-one-does/articleshow/125299924.cms. Falling back to RSS description.
+2025-11-13 17:01:33,667 - INFO - Duplicate article skipped: 'If we end H-1B tomorrow...': Influencer asks MAGA not to rant against Trump, 'he knows something that no one does' from Times of India
+2025-11-13 17:01:34,515 - INFO - [Times of India] Article: https://timesofindia.indiatimes.com/world/middle-east/kuwait-approves-new-working-hours-for-private-school-employees/articleshow/125298863.cms
+2025-11-13 17:01:34,515 - INFO - [Times of India] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-13 17:01:34,515 - ERROR - [Times of India] Selenium strategy selected but driver is not available. Skipping.
+2025-11-13 17:01:34,515 - ERROR - [Times of India] All scrape strategies failed for https://timesofindia.indiatimes.com/world/middle-east/kuwait-approves-new-working-hours-for-private-school-employees/articleshow/125298863.cms. Falling back to RSS description.
+2025-11-13 17:01:34,516 - INFO - Duplicate article skipped: Kuwait approves new working hours for private school employees from Times of India
+2025-11-13 17:01:35,528 - INFO - [Times of India] Article: https://timesofindia.indiatimes.com/world/middle-east/19-year-old-indian-teen-dies-in-dubai-while-photographing-planes/articleshow/125299018.cms
+2025-11-13 17:01:35,528 - INFO - [Times of India] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-13 17:01:35,528 - ERROR - [Times of India] Selenium strategy selected but driver is not available. Skipping.
+2025-11-13 17:01:35,528 - ERROR - [Times of India] All scrape strategies failed for https://timesofindia.indiatimes.com/world/middle-east/19-year-old-indian-teen-dies-in-dubai-while-photographing-planes/articleshow/125299018.cms. Falling back to RSS description.
+2025-11-13 17:01:35,528 - INFO - Duplicate article skipped: 19 year old Indian teen dies in Dubai while photographing planes from Times of India
+2025-11-13 17:01:36,759 - INFO - [Times of India] Article: https://timesofindia.indiatimes.com/world/middle-east/uae-makes-history-with-hili-the-nations-first-hybrid-cargo-plane-takes-flight/articleshow/125299358.cms
+2025-11-13 17:01:36,759 - INFO - [Times of India] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-13 17:01:36,759 - ERROR - [Times of India] Selenium strategy selected but driver is not available. Skipping.
+2025-11-13 17:01:36,759 - ERROR - [Times of India] All scrape strategies failed for https://timesofindia.indiatimes.com/world/middle-east/uae-makes-history-with-hili-the-nations-first-hybrid-cargo-plane-takes-flight/articleshow/125299358.cms. Falling back to RSS description.
+2025-11-13 17:01:36,759 - INFO - Duplicate article skipped: UAE makes history with Hili: The nation’s first hybrid cargo plane takes flight from Times of India
+2025-11-13 17:01:37,292 - INFO - [Times of India] Article: https://timesofindia.indiatimes.com/world/watch-miss-mundo-chile-contestant-surprises-judges-with-death-metal-performance/articleshow/125293604.cms
+2025-11-13 17:01:37,292 - INFO - [Times of India] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-13 17:01:37,292 - ERROR - [Times of India] Selenium strategy selected but driver is not available. Skipping.
+2025-11-13 17:01:37,292 - ERROR - [Times of India] All scrape strategies failed for https://timesofindia.indiatimes.com/world/watch-miss-mundo-chile-contestant-surprises-judges-with-death-metal-performance/articleshow/125293604.cms. Falling back to RSS description.
+2025-11-13 17:01:37,292 - INFO - Duplicate article skipped: Watch: Miss Mundo Chile contestant surprises judges with Death Metal performance from Times of India
+2025-11-13 17:01:38,656 - INFO - [Times of India] Article: https://timesofindia.indiatimes.com/world/us-streamers/yonna-jay-net-worth-in-2025-tiktok-stars-earnings-sponsorships-and-brand-deals-explored/articleshow/125298559.cms
+2025-11-13 17:01:38,656 - INFO - [Times of India] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-13 17:01:38,656 - ERROR - [Times of India] Selenium strategy selected but driver is not available. Skipping.
+2025-11-13 17:01:38,656 - ERROR - [Times of India] All scrape strategies failed for https://timesofindia.indiatimes.com/world/us-streamers/yonna-jay-net-worth-in-2025-tiktok-stars-earnings-sponsorships-and-brand-deals-explored/articleshow/125298559.cms. Falling back to RSS description.
+2025-11-13 17:01:38,657 - INFO - Duplicate article skipped: Yonna Jay net worth in 2025: TikTok star’s earnings, sponsorships, and brand deals explored from Times of India
+2025-11-13 17:01:39,317 - INFO - [Times of India] Article: https://timesofindia.indiatimes.com/world/us-streamers/duke-dennis-and-tylils-wild-clash-over-rakais-chain-leaves-millions-arguing-about-real-beef-or-scripted-drama/articleshow/125296018.cms
+2025-11-13 17:01:39,317 - INFO - [Times of India] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-13 17:01:39,317 - ERROR - [Times of India] Selenium strategy selected but driver is not available. Skipping.
+2025-11-13 17:01:39,317 - ERROR - [Times of India] All scrape strategies failed for https://timesofindia.indiatimes.com/world/us-streamers/duke-dennis-and-tylils-wild-clash-over-rakais-chain-leaves-millions-arguing-about-real-beef-or-scripted-drama/articleshow/125296018.cms. Falling back to RSS description.
+2025-11-13 17:01:39,317 - INFO - Duplicate article skipped: Duke Dennis and Tylil’s wild clash over RaKai’s chain leaves millions arguing about real beef or scripted drama from Times of India
+2025-11-13 17:01:40,446 - INFO - [Times of India] Article: https://timesofindia.indiatimes.com/world/middle-east/uae-launches-middle-easts-first-private-astronaut-training-centre/articleshow/125296766.cms
+2025-11-13 17:01:40,446 - INFO - [Times of India] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-13 17:01:40,446 - ERROR - [Times of India] Selenium strategy selected but driver is not available. Skipping.
+2025-11-13 17:01:40,446 - ERROR - [Times of India] All scrape strategies failed for https://timesofindia.indiatimes.com/world/middle-east/uae-launches-middle-easts-first-private-astronaut-training-centre/articleshow/125296766.cms. Falling back to RSS description.
+2025-11-13 17:01:40,447 - INFO - Duplicate article skipped: UAE launches Middle East’s first private astronaut training centre from Times of India
+2025-11-13 17:01:41,382 - INFO - [Times of India] Article: https://timesofindia.indiatimes.com/world/middle-east/gcc-approves-one-stop-travel-system-to-let-citizens-complete-all-travel-checks-at-one-point/articleshow/125296963.cms
+2025-11-13 17:01:41,382 - INFO - [Times of India] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-13 17:01:41,382 - ERROR - [Times of India] Selenium strategy selected but driver is not available. Skipping.
+2025-11-13 17:01:41,382 - ERROR - [Times of India] All scrape strategies failed for https://timesofindia.indiatimes.com/world/middle-east/gcc-approves-one-stop-travel-system-to-let-citizens-complete-all-travel-checks-at-one-point/articleshow/125296963.cms. Falling back to RSS description.
+2025-11-13 17:01:41,383 - INFO - Duplicate article skipped: GCC approves one stop travel system to let citizens complete all travel checks at one point from Times of India
+2025-11-13 17:01:42,511 - INFO - [Times of India] Article: https://timesofindia.indiatimes.com/technology/tech-news/runs-on-vodka-russias-first-ai-robot-stumbles-and-falls-moments-after-taking-its-first-steps/articleshow/125296084.cms
+2025-11-13 17:01:42,512 - INFO - [Times of India] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-13 17:01:42,512 - ERROR - [Times of India] Selenium strategy selected but driver is not available. Skipping.
+2025-11-13 17:01:42,512 - ERROR - [Times of India] All scrape strategies failed for https://timesofindia.indiatimes.com/technology/tech-news/runs-on-vodka-russias-first-ai-robot-stumbles-and-falls-moments-after-taking-its-first-steps/articleshow/125296084.cms. Falling back to RSS description.
+2025-11-13 17:01:42,512 - INFO - Duplicate article skipped: ‘Runs on Vodka’: Russia’s first AI robot stumbles and falls moments after taking its first steps from Times of India
+2025-11-13 17:01:43,341 - INFO - [Times of India] Article: https://timesofindia.indiatimes.com/world/south-asia/bangladesh-polls-yunus-govt-to-hold-referendum-general-elections-in-february-2026-what-is-july-charter/articleshow/125296291.cms
+2025-11-13 17:01:43,341 - INFO - [Times of India] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-13 17:01:43,341 - ERROR - [Times of India] Selenium strategy selected but driver is not available. Skipping.
+2025-11-13 17:01:43,341 - ERROR - [Times of India] All scrape strategies failed for https://timesofindia.indiatimes.com/world/south-asia/bangladesh-polls-yunus-govt-to-hold-referendum-general-elections-in-february-2026-what-is-july-charter/articleshow/125296291.cms. Falling back to RSS description.
+2025-11-13 17:01:43,342 - INFO - Duplicate article skipped: Bangladesh polls: Yunus govt to hold referendum, general elections in February 2026; what is July Charter? from Times of India
+2025-11-13 17:01:44,078 - INFO - Starting scrape for The Guardian RSS feed: https://www.theguardian.com/world/rss
+2025-11-13 17:01:44,179 - INFO - Found 45 articles in The Guardian RSS feed. Processing up to 20.
+2025-11-13 17:01:44,179 - INFO - [The Guardian] Article: https://www.theguardian.com/world/2025/nov/12/state-sanctioned-fuel-smuggling-cost-libya-20bn-over-three-years-report
+2025-11-13 17:01:44,179 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-13 17:01:44,210 - INFO - [The Guardian] Success with 'requests_browser'. Found content.
+2025-11-13 17:01:44,244 - INFO - Duplicate article skipped: State-sanctioned fuel smuggling cost Libya $20bn over three years – report | Libya | The Guardian from The Guardian
+2025-11-13 17:01:44,863 - INFO - [The Guardian] Article: https://www.theguardian.com/global-development/2025/nov/13/british-american-tobacco-africa-zambia-uk
+2025-11-13 17:01:44,863 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-13 17:01:44,892 - INFO - [The Guardian] Success with 'requests_browser'. Found content.
+2025-11-13 17:01:44,925 - INFO - Duplicate article skipped: ‘Utter hypocrisy’: tobacco firm lobbied against rules in Africa that are law in UK | Global development | The Guardian from The Guardian
+2025-11-13 17:01:46,390 - INFO - [The Guardian] Article: https://www.theguardian.com/world/2025/nov/12/french-algerian-writer-boualem-sansal-pardoned-and-to-be-released-from-prison
+2025-11-13 17:01:46,390 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-13 17:01:46,417 - INFO - [The Guardian] Success with 'requests_browser'. Found content.
+2025-11-13 17:01:46,448 - INFO - Duplicate article skipped: French-Algerian writer Boualem Sansal pardoned and to be released from prison | Algeria | The Guardian from The Guardian
+2025-11-13 17:01:47,319 - INFO - [The Guardian] Article: https://www.theguardian.com/world/2025/nov/12/sudan-north-darfur-aid-malnutrition-rsf-el-fasher-tawila
+2025-11-13 17:01:47,320 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-13 17:01:47,354 - INFO - [The Guardian] Success with 'requests_browser'. Found content.
+2025-11-13 17:01:47,425 - INFO - Duplicate article skipped: Dire warnings over aid and hunger following RSF’s capture of Sudanese city | Sudan | The Guardian from The Guardian
+2025-11-13 17:01:48,668 - INFO - [The Guardian] Article: https://www.theguardian.com/world/2025/nov/12/city-of-libraries-chinguetti-mauritania-sahara-unesco-preservation
+2025-11-13 17:01:48,668 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-13 17:01:48,696 - INFO - [The Guardian] Success with 'requests_browser'. Found content.
+2025-11-13 17:01:48,730 - INFO - Duplicate article skipped: The man on a mission to save Mauritania’s ‘city of libraries’ from encroaching desert sands | Mauritania | The Guardian from The Guardian
+2025-11-13 17:01:50,184 - INFO - [The Guardian] Article: https://www.theguardian.com/environment/live/2025/nov/13/cop30-live-calls-for-just-transition-plan-grow-as-report-warns-world-on-track-for-26c-of-heating
+2025-11-13 17:01:50,184 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-13 17:01:50,516 - INFO - [The Guardian] Success with 'requests_browser'. Found content.
+2025-11-13 17:01:50,594 - INFO - Duplicate article skipped: Cop30 live: calls for ‘just transition’ plan grow as report warns world on track for 2.6C of heating | Cop30 | The Guardian from The Guardian
+2025-11-13 17:01:51,777 - INFO - [The Guardian] Article: https://www.theguardian.com/environment/2025/nov/13/row-over-definition-of-gender-hangs-over-cop30-plans-to-support-women
+2025-11-13 17:01:51,777 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-13 17:01:51,938 - INFO - [The Guardian] Success with 'requests_browser'. Found content.
+2025-11-13 17:01:51,973 - INFO - Duplicate article skipped: Row over definition of ‘gender’ hangs over Cop30 plans to support women | Cop30 | The Guardian from The Guardian
+2025-11-13 17:01:52,888 - INFO - [The Guardian] Article: https://www.theguardian.com/world/2025/nov/13/mexico-sexual-abuse-president-groped
+2025-11-13 17:01:52,888 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-13 17:01:52,915 - INFO - [The Guardian] Success with 'requests_browser'. Found content.
+2025-11-13 17:01:52,950 - INFO - Duplicate article skipped: Mexico takes action to combat sexual abuse after president publicly groped | Mexico | The Guardian from The Guardian
+2025-11-13 17:01:54,208 - INFO - [The Guardian] Article: https://www.theguardian.com/environment/live/2025/nov/12/cop30-live-talks-us-protests-belem-brazil
+2025-11-13 17:01:54,209 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-13 17:01:54,280 - INFO - [The Guardian] Success with 'requests_browser'. Found content.
+2025-11-13 17:01:54,335 - INFO - Duplicate article skipped: Cop30 live: ‘literally insane’ that we are letting global heating happen, says Al Gore | Cop30 | The Guardian from The Guardian
+2025-11-13 17:01:55,266 - INFO - [The Guardian] Article: https://www.theguardian.com/world/2025/nov/12/canada-eurovision
+2025-11-13 17:01:55,266 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-13 17:01:55,292 - INFO - [The Guardian] Success with 'requests_browser'. Found content.
+2025-11-13 17:01:55,325 - INFO - Duplicate article skipped: Canada pushes to join Eurovision: ‘This is about protecting our identity’ | Canada | The Guardian from The Guardian
+2025-11-13 17:01:56,773 - INFO - [The Guardian] Article: https://www.theguardian.com/business/2025/nov/13/netherlands-china-nexperia-row-global-car-industry
+2025-11-13 17:01:56,773 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-13 17:01:56,801 - INFO - [The Guardian] Success with 'requests_browser'. Found content.
+2025-11-13 17:01:56,837 - INFO - Duplicate article skipped: ‘I’d do it all again,’ says Dutch minister at heart of car chip standoff with China | Automotive industry | The Guardian from The Guardian
+2025-11-13 17:01:57,933 - INFO - [The Guardian] Article: https://www.theguardian.com/world/2025/nov/13/amid-japans-surge-in-bear-attacks-a-torrent-of-ai-generated-videos-is-adding-to-anxiety
+2025-11-13 17:01:57,933 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-13 17:01:57,961 - INFO - [The Guardian] Success with 'requests_browser'. Found content.
+2025-11-13 17:01:57,993 - INFO - Duplicate article skipped: Amid Japan’s surge in bear attacks, a torrent of AI-generated videos is adding to anxiety | Japan | The Guardian from The Guardian
+2025-11-13 17:01:59,077 - INFO - [The Guardian] Article: https://www.theguardian.com/world/2025/nov/13/thailand-cambodia-border-clash
+2025-11-13 17:01:59,077 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-13 17:01:59,103 - INFO - [The Guardian] Success with 'requests_browser'. Found content.
+2025-11-13 17:01:59,136 - INFO - Duplicate article skipped: Fatal clash on Thai-Cambodia border after Trump-brokered peace deal breaks down | Cambodia | The Guardian from The Guardian
+2025-11-13 17:01:59,806 - INFO - [The Guardian] Article: https://www.theguardian.com/world/2025/nov/13/alleged-gambling-kingpin-she-zhijiang-extradited-thailand-china
+2025-11-13 17:01:59,807 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-13 17:01:59,834 - INFO - [The Guardian] Success with 'requests_browser'. Found content.
+2025-11-13 17:01:59,868 - INFO - Duplicate article skipped: Alleged gambling kingpin linked to scam centres extradited from Thailand to China | Thailand | The Guardian from The Guardian
+2025-11-13 17:02:00,611 - INFO - [The Guardian] Article: https://www.theguardian.com/science/2025/nov/13/stunning-aurora-australis-lights-up-sky-above-new-zealand-and-australia-after-cannibal-solar-storm
+2025-11-13 17:02:00,611 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-13 17:02:00,645 - INFO - [The Guardian] Success with 'requests_browser'. Found content.
+2025-11-13 17:02:00,691 - INFO - Duplicate article skipped: Stunning aurora australis lights up sky above New Zealand and Australia after ‘cannibal’ solar storm | Astronomy | The Guardian from The Guardian
+2025-11-13 17:02:02,115 - INFO - [The Guardian] Article: https://www.theguardian.com/australia-news/2025/nov/13/at-least-30000-graduates-lose-qualifications-in-australias-vocational-education-crackdown
+2025-11-13 17:02:02,115 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-13 17:02:02,149 - INFO - [The Guardian] Success with 'requests_browser'. Found content.
+2025-11-13 17:02:02,228 - INFO - Duplicate article skipped: At least 30,000 graduates lose qualifications in Australia’s vocational education crackdown | Australian education | The Guardian from The Guardian
+2025-11-13 17:02:03,011 - INFO - [The Guardian] Article: https://www.theguardian.com/australia-news/2025/nov/13/victoria-youth-adult-time-law-labor-jacinta-allan-coalition-ntwnfb
+2025-11-13 17:02:03,011 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-13 17:02:03,047 - INFO - [The Guardian] Success with 'requests_browser'. Found content.
+2025-11-13 17:02:03,092 - INFO - Duplicate article skipped: Will Victoria’s new youth crime laws be tough on crime or just a coward punch? | Victoria | The Guardian from The Guardian
+2025-11-13 17:02:04,579 - INFO - [The Guardian] Article: https://www.theguardian.com/australia-news/2025/nov/13/joanna-howe-anti-abortion-activist-sa-attorney-general-ntwnfb
+2025-11-13 17:02:04,579 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-13 17:02:04,614 - INFO - [The Guardian] Success with 'requests_browser'. Found content.
+2025-11-13 17:02:04,658 - INFO - Duplicate article skipped: SA attorney general refers anti-abortion activist Joanna Howe’s fundraiser ‘game’ for investigation | South Australian politics | The Guardian from The Guardian
+2025-11-13 17:02:05,675 - INFO - [The Guardian] Article: https://www.theguardian.com/australia-news/2025/nov/13/coalition-net-zero-power-bills-international-energy-agency
+2025-11-13 17:02:05,675 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-13 17:02:05,710 - INFO - [The Guardian] Success with 'requests_browser'. Found content.
+2025-11-13 17:02:05,754 - INFO - Duplicate article skipped: The Coalition believes pursuing net zero will increase power bills – but the IEA tells us the opposite is true | Energy | The Guardian from The Guardian
+2025-11-13 17:02:06,578 - INFO - [The Guardian] Article: https://www.theguardian.com/australia-news/2025/nov/13/malcom-turnbull-accuses-liberals-of-trumpian-campaign-against-renewables-after-party-dumps-net-zero
+2025-11-13 17:02:06,578 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-13 17:02:06,616 - INFO - [The Guardian] Success with 'requests_browser'. Found content.
+2025-11-13 17:02:06,663 - INFO - Duplicate article skipped: Malcolm Turnbull accuses Liberals of ‘Trumpian campaign against renewables’ after party dumps net zero | Liberal party | The Guardian from The Guardian
+2025-11-13 17:02:07,990 - INFO - Starting scrape for The Hindu RSS feed: https://www.thehindu.com/news/national/feeder/default.rss
+2025-11-13 17:02:08,248 - INFO - Found 100 articles in The Hindu RSS feed. Processing up to 20.
+2025-11-13 17:02:08,248 - INFO - [The Hindu] Article: https://www.thehindu.com/news/national/supreme-court-wants-government-to-promote-evs-amid-high-air-pollution/article70276717.ece
+2025-11-13 17:02:08,248 - INFO - [The Hindu] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-13 17:02:08,248 - ERROR - [The Hindu] Selenium strategy selected but driver is not available. Skipping.
+2025-11-13 17:02:08,248 - ERROR - [The Hindu] All scrape strategies failed for https://www.thehindu.com/news/national/supreme-court-wants-government-to-promote-evs-amid-high-air-pollution/article70276717.ece. Falling back to RSS description.
+2025-11-13 17:02:08,250 - INFO - Saved article: Supreme Court wants government to promote EVs amid high air pollution from The Hindu
+2025-11-13 17:02:09,169 - INFO - [The Hindu] Article: https://www.thehindu.com/sci-tech/health/supreme-court-reserves-verdict-on-plea-seeking-compensation-for-deaths-linked-to-covid-19-vaccines/article70275604.ece
+2025-11-13 17:02:09,169 - INFO - [The Hindu] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-13 17:02:09,169 - ERROR - [The Hindu] Selenium strategy selected but driver is not available. Skipping.
+2025-11-13 17:02:09,169 - ERROR - [The Hindu] All scrape strategies failed for https://www.thehindu.com/sci-tech/health/supreme-court-reserves-verdict-on-plea-seeking-compensation-for-deaths-linked-to-covid-19-vaccines/article70275604.ece. Falling back to RSS description.
+2025-11-13 17:02:09,171 - INFO - Saved article: Supreme Court reserves verdict on plea seeking compensation for deaths ‘linked’ to COVID-19 vaccines from The Hindu
+2025-11-13 17:02:10,606 - INFO - [The Hindu] Article: https://www.thehindu.com/news/national/central-trade-unions-reject-draft-labour-policy-ask-govt-to-convene-indian-labour-conference/article70276548.ece
+2025-11-13 17:02:10,606 - INFO - [The Hindu] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-13 17:02:10,606 - ERROR - [The Hindu] Selenium strategy selected but driver is not available. Skipping.
+2025-11-13 17:02:10,606 - ERROR - [The Hindu] All scrape strategies failed for https://www.thehindu.com/news/national/central-trade-unions-reject-draft-labour-policy-ask-govt-to-convene-indian-labour-conference/article70276548.ece. Falling back to RSS description.
+2025-11-13 17:02:10,608 - INFO - Saved article: Central Trade Unions reject draft labour policy, ask govt. to convene Indian Labour Conference from The Hindu
+2025-11-13 17:02:11,583 - INFO - [The Hindu] Article: https://www.thehindu.com/news/national/west-bengal/calcutta-high-court-disqualifies-politician-mukul-roy-from-west-bengal-legislative-assembly-under-anti-defection-law/article70275648.ece
+2025-11-13 17:02:11,583 - INFO - [The Hindu] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-13 17:02:11,583 - ERROR - [The Hindu] Selenium strategy selected but driver is not available. Skipping.
+2025-11-13 17:02:11,583 - ERROR - [The Hindu] All scrape strategies failed for https://www.thehindu.com/news/national/west-bengal/calcutta-high-court-disqualifies-politician-mukul-roy-from-west-bengal-legislative-assembly-under-anti-defection-law/article70275648.ece. Falling back to RSS description.
+2025-11-13 17:02:11,583 - INFO - Duplicate article skipped: Calcutta High Court disqualifies politician Mukul Roy from West Bengal Legislative Assembly under anti-defection law from The Hindu
+2025-11-13 17:02:12,353 - INFO - [The Hindu] Article: https://www.thehindu.com/news/national/centre-suspends-over-4000-fertiliser-distributor-licences-on-hoarding-charges/article70276354.ece
+2025-11-13 17:02:12,353 - INFO - [The Hindu] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-13 17:02:12,353 - ERROR - [The Hindu] Selenium strategy selected but driver is not available. Skipping.
+2025-11-13 17:02:12,353 - ERROR - [The Hindu] All scrape strategies failed for https://www.thehindu.com/news/national/centre-suspends-over-4000-fertiliser-distributor-licences-on-hoarding-charges/article70276354.ece. Falling back to RSS description.
+2025-11-13 17:02:12,354 - INFO - Duplicate article skipped: Centre suspends over 4000 fertiliser distributor licences on hoarding charges from The Hindu
+2025-11-13 17:02:13,697 - INFO - [The Hindu] Article: https://www.thehindu.com/news/national/uttar-pradesh/teacher-suspended-booked-for-refusing-to-sing-vande-mataram/article70276585.ece
+2025-11-13 17:02:13,698 - INFO - [The Hindu] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-13 17:02:13,698 - ERROR - [The Hindu] Selenium strategy selected but driver is not available. Skipping.
+2025-11-13 17:02:13,698 - ERROR - [The Hindu] All scrape strategies failed for https://www.thehindu.com/news/national/uttar-pradesh/teacher-suspended-booked-for-refusing-to-sing-vande-mataram/article70276585.ece. Falling back to RSS description.
+2025-11-13 17:02:13,698 - INFO - Duplicate article skipped: Teacher suspended, booked for refusing to sing Vande Mataram from The Hindu
+2025-11-13 17:02:14,401 - INFO - [The Hindu] Article: https://www.thehindu.com/news/national/karnataka/diabetes-screening-camp-in-belagavi-today/article70276276.ece
+2025-11-13 17:02:14,401 - INFO - [The Hindu] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-13 17:02:14,401 - ERROR - [The Hindu] Selenium strategy selected but driver is not available. Skipping.
+2025-11-13 17:02:14,401 - ERROR - [The Hindu] All scrape strategies failed for https://www.thehindu.com/news/national/karnataka/diabetes-screening-camp-in-belagavi-today/article70276276.ece. Falling back to RSS description.
+2025-11-13 17:02:14,401 - INFO - Duplicate article skipped: Diabetes screening camp in Belagavi today from The Hindu
+2025-11-13 17:02:15,719 - INFO - [The Hindu] Article: https://www.thehindu.com/news/national/karnataka/rise-in-diabetic-foot-condition-doctors-now-employ-ai-for-early-detection/article70275839.ece
+2025-11-13 17:02:15,719 - INFO - [The Hindu] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-13 17:02:15,719 - ERROR - [The Hindu] Selenium strategy selected but driver is not available. Skipping.
+2025-11-13 17:02:15,719 - ERROR - [The Hindu] All scrape strategies failed for https://www.thehindu.com/news/national/karnataka/rise-in-diabetic-foot-condition-doctors-now-employ-ai-for-early-detection/article70275839.ece. Falling back to RSS description.
+2025-11-13 17:02:15,719 - INFO - Duplicate article skipped: Rise in diabetic foot condition: Doctors now employ AI for early detection from The Hindu
+2025-11-13 17:02:16,556 - INFO - [The Hindu] Article: https://www.thehindu.com/news/national/rss-hired-pakistan-linked-lobbying-firm-for-work-in-us-says-congress/article70276123.ece
+2025-11-13 17:02:16,556 - INFO - [The Hindu] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-13 17:02:16,556 - ERROR - [The Hindu] Selenium strategy selected but driver is not available. Skipping.
+2025-11-13 17:02:16,556 - ERROR - [The Hindu] All scrape strategies failed for https://www.thehindu.com/news/national/rss-hired-pakistan-linked-lobbying-firm-for-work-in-us-says-congress/article70276123.ece. Falling back to RSS description.
+2025-11-13 17:02:16,557 - INFO - Duplicate article skipped: RSS hired Pakistan-linked lobbying firm for work in U.S., says Congress from The Hindu
+2025-11-13 17:02:17,929 - INFO - [The Hindu] Article: https://www.thehindu.com/sci-tech/energy-and-environment/supreme-court-protects-314-sqkm-of-pristine-sal-forest-in-jharkhands-saranda/article70276190.ece
+2025-11-13 17:02:17,929 - INFO - [The Hindu] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-13 17:02:17,929 - ERROR - [The Hindu] Selenium strategy selected but driver is not available. Skipping.
+2025-11-13 17:02:17,930 - ERROR - [The Hindu] All scrape strategies failed for https://www.thehindu.com/sci-tech/energy-and-environment/supreme-court-protects-314-sqkm-of-pristine-sal-forest-in-jharkhands-saranda/article70276190.ece. Falling back to RSS description.
+2025-11-13 17:02:17,931 - INFO - Saved article: Supreme Court protects 314 sq. km of pristine sal forest in Jharkhand’s Saranda from The Hindu
+2025-11-13 17:02:19,039 - INFO - [The Hindu] Article: https://www.thehindu.com/news/national/karnataka/46-mechanical-sweeping-machines-to-be-rented-for-613-crore/article70276578.ece
+2025-11-13 17:02:19,039 - INFO - [The Hindu] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-13 17:02:19,039 - ERROR - [The Hindu] Selenium strategy selected but driver is not available. Skipping.
+2025-11-13 17:02:19,039 - ERROR - [The Hindu] All scrape strategies failed for https://www.thehindu.com/news/national/karnataka/46-mechanical-sweeping-machines-to-be-rented-for-613-crore/article70276578.ece. Falling back to RSS description.
+2025-11-13 17:02:19,040 - INFO - Duplicate article skipped: 46 mechanical sweeping machines to be rented for ₹613 crore from The Hindu
+2025-11-13 17:02:19,572 - INFO - [The Hindu] Article: https://www.thehindu.com/news/national/tamil-nadu/three-persons-arrested-on-murder-charges-in-tiruvannamalai/article70275337.ece
+2025-11-13 17:02:19,572 - INFO - [The Hindu] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-13 17:02:19,572 - ERROR - [The Hindu] Selenium strategy selected but driver is not available. Skipping.
+2025-11-13 17:02:19,572 - ERROR - [The Hindu] All scrape strategies failed for https://www.thehindu.com/news/national/tamil-nadu/three-persons-arrested-on-murder-charges-in-tiruvannamalai/article70275337.ece. Falling back to RSS description.
+2025-11-13 17:02:19,573 - INFO - Duplicate article skipped: Three persons arrested on murder charges in Tiruvannamalai from The Hindu
+2025-11-13 17:02:21,032 - INFO - [The Hindu] Article: https://www.thehindu.com/news/national/karnataka/lokayukta-inspection-exposes-irregularities-in-government-run-hostel/article70276078.ece
+2025-11-13 17:02:21,032 - INFO - [The Hindu] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-13 17:02:21,032 - ERROR - [The Hindu] Selenium strategy selected but driver is not available. Skipping.
+2025-11-13 17:02:21,032 - ERROR - [The Hindu] All scrape strategies failed for https://www.thehindu.com/news/national/karnataka/lokayukta-inspection-exposes-irregularities-in-government-run-hostel/article70276078.ece. Falling back to RSS description.
+2025-11-13 17:02:21,032 - INFO - Duplicate article skipped: Lokayukta inspection exposes irregularities in government-run hostel from The Hindu
+2025-11-13 17:02:21,810 - INFO - [The Hindu] Article: https://www.thehindu.com/news/national/indian-agencies-monitoring-pakistans-tech-transfer-deal-with-european-drone-maker/article70276261.ece
+2025-11-13 17:02:21,810 - INFO - [The Hindu] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-13 17:02:21,810 - ERROR - [The Hindu] Selenium strategy selected but driver is not available. Skipping.
+2025-11-13 17:02:21,810 - ERROR - [The Hindu] All scrape strategies failed for https://www.thehindu.com/news/national/indian-agencies-monitoring-pakistans-tech-transfer-deal-with-european-drone-maker/article70276261.ece. Falling back to RSS description.
+2025-11-13 17:02:21,810 - INFO - Duplicate article skipped: Indian agencies monitoring Pakistan’s tech transfer deal with European drone maker from The Hindu
+2025-11-13 17:02:23,273 - INFO - [The Hindu] Article: https://www.thehindu.com/news/national/chhattisgarh/congress-asks-ec-to-allow-more-time-for-sir-in-chhattisgarh/article70276219.ece
+2025-11-13 17:02:23,273 - INFO - [The Hindu] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-13 17:02:23,273 - ERROR - [The Hindu] Selenium strategy selected but driver is not available. Skipping.
+2025-11-13 17:02:23,273 - ERROR - [The Hindu] All scrape strategies failed for https://www.thehindu.com/news/national/chhattisgarh/congress-asks-ec-to-allow-more-time-for-sir-in-chhattisgarh/article70276219.ece. Falling back to RSS description.
+2025-11-13 17:02:23,274 - INFO - Duplicate article skipped: Congress asks Election Commission to allow more time for SIR in Chhattisgarh from The Hindu
+2025-11-13 17:02:24,279 - INFO - [The Hindu] Article: https://www.thehindu.com/news/national/karnataka/karnataka-space-tech-policy-aims-to-garner-5-global-market-share/article70275812.ece
+2025-11-13 17:02:24,279 - INFO - [The Hindu] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-13 17:02:24,279 - ERROR - [The Hindu] Selenium strategy selected but driver is not available. Skipping.
+2025-11-13 17:02:24,279 - ERROR - [The Hindu] All scrape strategies failed for https://www.thehindu.com/news/national/karnataka/karnataka-space-tech-policy-aims-to-garner-5-global-market-share/article70275812.ece. Falling back to RSS description.
+2025-11-13 17:02:24,280 - INFO - Duplicate article skipped: Karnataka space tech policy aims to garner 5% global market share from The Hindu
+2025-11-13 17:02:25,025 - INFO - [The Hindu] Article: https://www.thehindu.com/news/national/kerala/pre-test-for-digital-census-begins-in-kerala/article70276566.ece
+2025-11-13 17:02:25,025 - INFO - [The Hindu] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-13 17:02:25,025 - ERROR - [The Hindu] Selenium strategy selected but driver is not available. Skipping.
+2025-11-13 17:02:25,025 - ERROR - [The Hindu] All scrape strategies failed for https://www.thehindu.com/news/national/kerala/pre-test-for-digital-census-begins-in-kerala/article70276566.ece. Falling back to RSS description.
+2025-11-13 17:02:25,025 - INFO - Duplicate article skipped: Pre-test for digital census begins in Kerala from The Hindu
+2025-11-13 17:02:26,144 - INFO - [The Hindu] Article: https://www.thehindu.com/news/national/ed-attaches-assets-worth-612-crore-belonging-to-baghels-son/article70275418.ece
+2025-11-13 17:02:26,144 - INFO - [The Hindu] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-13 17:02:26,144 - ERROR - [The Hindu] Selenium strategy selected but driver is not available. Skipping.
+2025-11-13 17:02:26,145 - ERROR - [The Hindu] All scrape strategies failed for https://www.thehindu.com/news/national/ed-attaches-assets-worth-612-crore-belonging-to-baghels-son/article70275418.ece. Falling back to RSS description.
+2025-11-13 17:02:26,145 - INFO - Duplicate article skipped: ED attaches assets worth ₹61.2 crore belonging to Baghel’s son from The Hindu
+2025-11-13 17:02:27,430 - INFO - [The Hindu] Article: https://www.thehindu.com/news/national/karnataka/bjp-worker-found-dead-in-vyalikaval/article70275643.ece
+2025-11-13 17:02:27,430 - INFO - [The Hindu] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-13 17:02:27,430 - ERROR - [The Hindu] Selenium strategy selected but driver is not available. Skipping.
+2025-11-13 17:02:27,430 - ERROR - [The Hindu] All scrape strategies failed for https://www.thehindu.com/news/national/karnataka/bjp-worker-found-dead-in-vyalikaval/article70275643.ece. Falling back to RSS description.
+2025-11-13 17:02:27,430 - INFO - Duplicate article skipped: BJP worker found dead in Vyalikaval from The Hindu
+2025-11-13 17:02:28,862 - INFO - [The Hindu] Article: https://www.thehindu.com/news/national/kerala/one-more-student-of-kannadi-school-found-dead/article70276553.ece
+2025-11-13 17:02:28,862 - INFO - [The Hindu] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-13 17:02:28,862 - ERROR - [The Hindu] Selenium strategy selected but driver is not available. Skipping.
+2025-11-13 17:02:28,862 - ERROR - [The Hindu] All scrape strategies failed for https://www.thehindu.com/news/national/kerala/one-more-student-of-kannadi-school-found-dead/article70276553.ece. Falling back to RSS description.
+2025-11-13 17:02:28,862 - INFO - Duplicate article skipped: One more student of Kannadi school found dead from The Hindu
+2025-11-13 17:02:30,238 - INFO - Starting scrape for Reuters RSS feed: https://feeds.reuters.com/reuters/worldNews
+2025-11-13 17:02:30,316 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7f4b2c0b1690>: Failed to resolve 'feeds.reuters.com' ([Errno -2] Name or service not known)")': /reuters/worldNews
+2025-11-13 17:02:32,453 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7f4b2c0b0dc0>: Failed to resolve 'feeds.reuters.com' ([Errno -2] Name or service not known)")': /reuters/worldNews
+2025-11-13 17:02:36,560 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7f4b2c0b0b80>: Failed to resolve 'feeds.reuters.com' ([Errno -2] Name or service not known)")': /reuters/worldNews
+2025-11-13 17:02:36,637 - ERROR - Failed to fetch Reuters RSS feed: HTTPSConnectionPool(host='feeds.reuters.com', port=443): Max retries exceeded with url: /reuters/worldNews (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7f4b2c0b0970>: Failed to resolve 'feeds.reuters.com' ([Errno -2] Name or service not known)"))
+2025-11-13 17:02:36,637 - INFO - Scraped: 20 BBC, 20 Times of India, 20 The Guardian, 20 The Hindu, 0 Reuters articles. (Total saved: 80)
+2025-11-13 17:02:36,638 - INFO - --- Scraping job finished ---
+2025-11-13 17:02:36,638 - INFO - --- Scraper service stopped and database connection closed. ---
