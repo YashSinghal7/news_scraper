@@ -2,8 +2,13 @@ name: Run News Scraper with logs
 
 on:
   schedule:
-    # - cron: '* * * * *'  # Run every 6 hours
+    # - cron: '0 */6 * * *'  # Run every 6 hours
   workflow_dispatch:      # manual trigger
+
+# Prevent multiple instances from running simultaneously
+concurrency:
+  group: news-scraper
+  cancel-in-progress: false  # Wait for previous run to complete
 
 jobs:
   scrape_news:
@@ -14,33 +19,21 @@ jobs:
         uses: actions/checkout@v3
         with:
           persist-credentials: false
+          fetch-depth: 0  # Fetch all history to avoid rebase issues
 
       - name: Set up Python 3.10
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
 
-      # --- THIS IS THE FIX ---
-      # We will use the official browser-actions/setup-chrome action
-      # This installs Google Chrome AND its matching, compatible chromedriver
-      # and adds them both to the system PATH.
       - name: Setup Chrome
         uses: browser-actions/setup-chrome@v1
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          # Install from requirements.txt if it exists
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-          # Install the core dependencies required by the script
           pip install requests beautifulsoup4 trafilatura selenium
-
-      # --- THIS STEP IS NO LONGER NEEDED ---
-      # The 'browser-actions/setup-chrome' step handles this reliably.
-      # - name: Install Chromium and ChromeDriver
-      #   run: |
-      #     sudo apt-get update
-      #     sudo apt-get install -y chromium-browser chromium-chromedriver
 
       - name: Run scraper
         env:
@@ -50,14 +43,10 @@ jobs:
 
       - name: Save logs with timestamp
         run: |
-          # Create logs directory if it doesn't exist
           mkdir -p logs
-          
-          # Create timestamped log filename
           TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
           LOG_FILE="logs/scraper_${TIMESTAMP}_run${{ github.run_number }}.log"
           
-          # Copy the log file with timestamp
           if [ -f news_scraper.log ]; then
             cp news_scraper.log "$LOG_FILE"
             echo "Log saved as $LOG_FILE"
@@ -75,13 +64,42 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
 
-          # Add database and logs folder
+          # Stage changes
           git add news_articles.db logs/
 
-          # Commit and push if anything changed
+          # Only proceed if there are changes
           if ! git diff --staged --quiet; then
+            echo "Changes detected, committing..."
             git commit -m "Update database and logs [skip ci]"
-            git push origin HEAD:${GITHUB_REF}
+            
+            # Pull latest changes with rebase strategy
+            echo "Pulling latest changes from remote..."
+            git pull --rebase origin main || {
+              echo "Rebase conflict detected, attempting to resolve..."
+              # In case of conflict, prefer our changes for db and logs
+              git checkout --ours news_articles.db logs/
+              git add news_articles.db logs/
+              git rebase --continue || echo "Manual intervention may be needed"
+            }
+            
+            # Push changes with retry logic
+            echo "Pushing changes..."
+            MAX_RETRIES=3
+            RETRY_COUNT=0
+            
+            until git push origin HEAD:main || [ $RETRY_COUNT -eq $MAX_RETRIES ]; do
+              RETRY_COUNT=$((RETRY_COUNT+1))
+              echo "Push failed, retry $RETRY_COUNT of $MAX_RETRIES..."
+              sleep 2
+              git pull --rebase origin main
+            done
+            
+            if [ $RETRY_COUNT -eq $MAX_RETRIES ]; then
+              echo "Failed to push after $MAX_RETRIES attempts"
+              exit 1
+            fi
+            
+            echo "Successfully pushed changes"
           else
             echo "No changes to commit"
           fi
