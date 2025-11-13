@@ -20,6 +20,13 @@ jobs:
         with:
           python-version: '3.10'
 
+      # --- THIS IS THE FIX ---
+      # We will use the official browser-actions/setup-chrome action
+      # This installs Google Chrome AND its matching, compatible chromedriver
+      # and adds them both to the system PATH.
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@v1
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -30,10 +37,12 @@ jobs:
           # Remove schedule as it's no longer used
           pip uninstall -y schedule
 
-      - name: Install Chromium and ChromeDriver
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y chromium-browser chromium-chromedriver
+      # --- THIS STEP IS NO LONGER NEEDED ---
+      # The 'browser-actions/setup-chrome' step handles this reliably.
+      # - name: Install Chromium and ChromeDriver
+      #   run: |
+      #     sudo apt-get update
+      #     sudo apt-get install -y chromium-browser chromium-chromedriver
 
       - name: Run scraper
         env:
