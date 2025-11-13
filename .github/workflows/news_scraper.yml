@@ -1,0 +1,53 @@
+name: Run News Scraper
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'  # every 5 minutes
+  workflow_dispatch:       # manual trigger
+
+jobs:
+  scrape_news:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: false  # Needed to set up custom git push auth below
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Install Chromium and ChromeDriver
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y chromium-browser chromium-chromedriver
+
+      - name: Run scraper
+        env:
+          DISPLAY: :99
+        run: |
+          python news_scraper.py
+
+      - name: Commit and push updated database
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Check if the database file changed
+          if git status --porcelain | grep -q "news_articles.db"; then
+            git add news_articles.db
+            git commit -m "Update news_articles.db with latest scraped data [skip ci]"
+            git push origin HEAD:${{ github.ref }}
+          else
+            echo "No changes in news_articles.db to commit"
+          fi
