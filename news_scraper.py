@@ -1,15 +1,23 @@
 # ==============================================================================
 # --- GLOBAL USER SETTINGS ---
 #
-# Change these two values to control the scraper's behavior.
-#
-# How often the job runs (in minutes)
-SCHEDULE_RUN_MINUTES = 5
-#
 # How many articles to get from each source (e.g., 25)
 # This is a 'max' value. If a feed only has 20 articles, it will get 20.
-MAX_ARTICLES_PER_SOURCE = 5
+MAX_ARTICLES_PER_SOURCE = 1
 #
+# --- NEW: PROXY CONFIGURATION ---
+# Set 'use_proxies' to True to route all requests (Requests & Selenium)
+# through the 'proxy_url'.
+#
+# This is the "at any cost" solution for IP bans.
+#
+# 'proxy_url' should be in the format: http://username:password@proxy.example.com:8080
+# This single URL can be a static proxy or a gateway for a rotating proxy service.
+#
+PROXY_SETTINGS = {
+    "use_proxies": False,
+    "proxy_url": None  # e.g., "http://user:pass@proxy.service.com:8080"
+}
 # ==============================================================================
 
 import requests
@@ -17,8 +25,8 @@ from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 from bs4 import BeautifulSoup
 import trafilatura # <-- We will use this for text
-import schedule
-import time
+# import schedule # <-- REMOVED: No longer needed for CI
+import time # <-- Still needed for politeness delays
 import logging
 import sqlite3
 from datetime import datetime
@@ -101,6 +109,7 @@ def create_selenium_driver():
     """
     Initializes and returns a headless Selenium Chrome WebDriver.
     This now uses Selenium's built-in SeleniumManager, NOT webdriver-manager.
+    It will also configure a proxy if one is set in PROXY_SETTINGS.
     """
     if not SELENIUM_AVAILABLE:
         logging.error("Cannot create Selenium driver, library not found.")
@@ -114,6 +123,12 @@ def create_selenium_driver():
         options.add_argument("--no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
         options.add_argument(f"user-agent={random.choice(BROWSER_USER_AGENTS)}") # Use random agent
+        
+        # --- NEW: Add proxy to Selenium ---
+        if PROXY_SETTINGS["use_proxies"] and PROXY_SETTINGS["proxy_url"]:
+            logging.info(f"Configuring Selenium driver to use proxy.")
+            options.add_argument(f"--proxy-server={PROXY_SETTINGS['proxy_url']}")
+        # ----------------------------------
         
         # --- THIS IS THE FIX ---
         # We no longer pass a 'service' object with ChromeDriverManager.
@@ -242,7 +257,7 @@ def save_article(source, title, url, summary, image_url):
         logging.error(f"Error saving article: {e}")
 
 # --- RE-ARCHITECTED: Generic Scraper Function with Strategy Loop ---
-def scrape_source(session, selenium_driver, source_config):
+def scrape_source(session, selenium_driver, source_config, proxies_dict):
     """
     A generic function that scrapes any source based on its config.
     It will try every strategy in `article_strategies` to get the full text
@@ -257,7 +272,8 @@ def scrape_source(session, selenium_driver, source_config):
     try:
         # 1. Get RSS Feed
         rss_headers = get_headers(source_config['rss_headers_type'])
-        response = session.get(rss_url, headers=rss_headers, timeout=15) 
+        # --- UPDATED: Pass proxies to session.get ---
+        response = session.get(rss_url, headers=rss_headers, timeout=15, proxies=proxies_dict) 
         response.raise_for_status() # Will raise an error for 4xx/5xx
         
         soup = BeautifulSoup(response.content, 'xml')
@@ -301,12 +317,14 @@ def scrape_source(session, selenium_driver, source_config):
                             article_headers = get_headers(header_type)
                             article_headers['Referer'] = source_config['referer']
                             
-                            page_response = session.get(article_url, headers=article_headers, timeout=10)
+                            # --- UPDATED: Pass proxies to session.get ---
+                            page_response = session.get(article_url, headers=article_headers, timeout=10, proxies=proxies_dict)
                             page_response.raise_for_status()
                             raw_html = page_response.text
                         
                         elif strategy == 'selenium_browser':
                             # 3. Download Article Page with SELENIUM
+                            # Selenium driver is already configured with proxy, if set
                             if not selenium_driver:
                                 logging.error(f"[{name}] Selenium strategy selected but driver is not available. Skipping.")
                                 continue # Try next strategy
@@ -404,6 +422,18 @@ def scrape_all():
     session = create_robust_session() # Create one session for the whole job
     driver = None # Initialize driver as None
     
+    # --- NEW: Create proxy dictionary from settings ---
+    proxies_dict = None
+    if PROXY_SETTINGS["use_proxies"] and PROXY_SETTINGS["proxy_url"]:
+        logging.info(f"Proxy is ENABLED. Routing requests through: {PROXY_SETTINGS['proxy_url']}")
+        proxies_dict = {
+            "http": PROXY_SETTINGS["proxy_url"],
+            "https": PROXY_SETTINGS["proxy_url"]
+        }
+    else:
+        logging.info("Proxy is DISABLED.")
+    # --------------------------------------------------
+    
     all_counts = {}
     total_saved = 0 
     
@@ -424,7 +454,8 @@ def scrape_all():
             # so that if one source (e.g. BBC) fails completely,
             # it doesn't stop the others (e.g. TOI) from running.
             try:
-                articles_saved = scrape_source(session, driver, source) # Pass the (possibly None) driver
+                # --- UPDATED: Pass proxies_dict to scrape_source ---
+                articles_saved = scrape_source(session, driver, source, proxies_dict) # Pass the (possibly None) driver
                 count = len(articles_saved)
                 all_counts[source['name']] = count
                 total_saved += count # Add to total
@@ -458,32 +489,24 @@ def main():
     """
     Main function to run the scraper immediately and then schedule it.
     Includes robust error handling and DB connection closing.
+    
+    --- UPDATED FOR GITHUB ACTIONS ---
+    This function no longer schedules or loops. It runs 
+    scrape_all() exactly once and then exits.
     """
     global conn # Make connection global to be accessible in finally
-    # --- REMOVED: Driver is no longer created in main() ---
     
     try:
-        logging.info("--- Scraper service started. ---")
+        logging.info("--- Scraper service started (CI Mode: Run Once) ---")
         
-        print("Running initial scrape...")
-        scrape_all() # Run once immediately on start
+        print("Running single scrape for CI...")
+        scrape_all() # Run once
         
-        # --- UPDATED: Schedule job *without* passing driver ---
-        # It now reads the schedule time from the global setting at the top
-        schedule.every(SCHEDULE_RUN_MINUTES).minutes.do(scrape_all)
-
-        print(f"News scraper started, running every {SCHEDULE_RUN_MINUTES} minutes. Press Ctrl+C to stop.")
-        while True:
-            schedule.run_pending()
-            time.sleep(1)
+        print("Scrape finished.")
             
-    except KeyboardInterrupt:
-        print("\nStopping scraper...")
-        logging.info("KeyboardInterrupt received. Stopping scraper.")
     except Exception as e:
-        logging.critical(f"A critical error occurred in the main loop: {e}")
+        logging.critical(f"A critical error occurred in the main function: {e}")
     finally:
-        # --- REMOVED: Driver quit is now in scrape_all() ---
         if conn:
             conn.close() # Ensure database connection is closed on exit
             logging.info("--- Scraper service stopped and database connection closed. ---")
