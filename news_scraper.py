@@ -3,7 +3,7 @@
 #
 # How many articles to get from each source (e.g., 25)
 # This is a 'max' value. If a feed only has 20 articles, it will get 20.
-MAX_ARTICLES_PER_SOURCE = 5
+MAX_ARTICLES_PER_SOURCE = 10
 #
 # --- NEW: PROXY CONFIGURATION ---
 # Set 'use_proxies' to True to route all requests (Requests & Selenium)
@@ -24,14 +24,18 @@ import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 from bs4 import BeautifulSoup
-import trafilatura # <-- We will use this for text
-# import schedule # <-- REMOVED: No longer needed for CI
-import time # <-- Still needed for politeness delays
+import trafilatura  # <-- We will use this for text
+import time  # <-- Still needed for politeness delays
 import logging
 import sqlite3
 from datetime import datetime
-import random # <-- For User-Agent rotation
-import os # <-- REMOVED: No longer needed for CI path check
+import random  # <-- For User-Agent rotation
+import os  # <-- NEW: Import os for the hard exit
+
+# --- NEW: Imports for Parallelism ---
+from concurrent.futures import ThreadPoolExecutor, as_completed, wait
+import threading
+# ------------------------------------
 
 # --- UPDATED: Import Selenium ---
 try:
@@ -39,7 +43,12 @@ try:
     # from selenium.webdriver.chrome.service import Service as ChromeService # <-- REMOVED
     from selenium.webdriver.chrome.options import Options as ChromeOptions
     from selenium.common.exceptions import WebDriverException
-    # --- REMOVED: webdriver_manager is no longer needed ---
+    # --- NEW: Imports for Explicit Waits ---
+    from selenium.webdriver.common.by import By
+    from selenium.webdriver.support.ui import WebDriverWait
+    from selenium.webdriver.support import expected_conditions as EC
+    from selenium.common.exceptions import TimeoutException
+    # ---------------------------------------
     SELENIUM_AVAILABLE = True
 except ImportError:
     logging.critical("Selenium not installed. Run 'pip install selenium'. Selenium-dependent sources will fail.")
@@ -50,16 +59,22 @@ except ImportError:
 
 def create_robust_session():
     """
-    Creates a requests.Session with automatic retries on server errors (5xx).
+    Creates a requests.Session with automatic retries on server errors (5xx)
+    and common connection errors.
     """
-    logging.info("Creating new robust session with 3 retries on 5xx errors.")
+    logging.info("Creating new robust session with 3 retries on 5xx/connection/read errors.")
     session = requests.Session()
-    # Define a retry strategy: 3 retries, 1s/2s/4s backoff, retry on 5xx errors
+    # Define a retry strategy: 3 retries, 1s/2s/4s backoff
     retry_strategy = Retry(
         total=3,
         backoff_factor=1,
+        # Retry on server errors and specific connection-related codes
         status_forcelist=[500, 502, 503, 504],
-        allowed_methods=["HEAD", "GET"] # Only retry on safe methods
+        # --- NEW: Retry on connection and read errors ---
+        allowed_methods=["HEAD", "GET"],
+        # We explicitly retry on these types of errors
+        connect=True, # Retry on connection errors
+        read=True,    # Retry on read errors
     )
     # Mount the strategy to all http and https requests
     adapter = HTTPAdapter(max_retries=retry_strategy)
@@ -72,7 +87,7 @@ BASE_HEADERS = {
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
     'Accept-Language': 'en-US,en;q=0.9',
     'Accept-Encoding': 'gzip, deflate, br',
-    'DNT': '1', # Do Not Track
+    'DNT': '1',  # Do Not Track
     'Upgrade-Insecure-Requests': '1',
 }
 
@@ -109,11 +124,6 @@ def get_headers(header_type):
 def create_selenium_driver():
     """
     Initializes and returns a headless Selenium Chrome WebDriver.
-    
-    --- REVERTED FIX ---
-    We now rely *only* on Selenium's built-in SeleniumManager.
-    The GitHub Action workflow is responsible for installing Chrome
-    and its matching driver onto the system PATH.
     """
     if not SELENIUM_AVAILABLE:
         logging.error("Cannot create Selenium driver, library not found.")
@@ -123,11 +133,11 @@ def create_selenium_driver():
     
     try:
         options = ChromeOptions()
-        options.add_argument("--headless=new") # Use "new" headless mode
+        options.add_argument("--headless=new")  # Use "new" headless mode
         options.add_argument("--disable-gpu")
-        options.add_argument("--no-sandbox") # Required for running as root in CI
-        options.add_argument("--disable-dev-shm-usage") # Required for CI
-        options.add_argument(f"user-agent={random.choice(BROWSER_USER_AGENTS)}") # Use random agent
+        options.add_argument("--no-sandbox")  # Required for running as root in CI
+        options.add_argument("--disable-dev-shm-usage")  # Required for CI
+        options.add_argument(f"user-agent={random.choice(BROWSER_USER_AGENTS)}")  # Use random agent
         
         # --- NEW: Add proxy to Selenium ---
         if PROXY_SETTINGS["use_proxies"] and PROXY_SETTINGS["proxy_url"]:
@@ -135,15 +145,10 @@ def create_selenium_driver():
             options.add_argument(f"--proxy-server={PROXY_SETTINGS['proxy_url']}")
         # ----------------------------------
 
-        # --- THIS IS THE FIX ---
-        # We no longer check for OS paths or use webdriver-manager.
-        # We let SeleniumManager find the driver on the PATH,
-        # which the GitHub Action (`browser-actions/setup-chrome`) will provide.
         driver = webdriver.Chrome(options=options)
-        # ------------------------------------
         
         # --- TIMEOUT FIX: Increase timeout to 60 seconds ---
-        driver.set_page_load_timeout(60) # 60 second timeout
+        driver.set_page_load_timeout(60)  # 60 second page load timeout
         logging.info("Selenium driver initialized successfully.")
         return driver
     except WebDriverException as e:
@@ -162,7 +167,7 @@ SOURCE_CONFIG = [
         'name': 'BBC',
         'rss_url': 'http://feeds.bbci.co.uk/news/world/rss.xml',
         'rss_headers_type': 'feedfetcher',
-        'article_strategies': ['requests_browser'], # Works fine, keep it fast
+        'article_strategies': ['requests_browser'],  # Works fine, keep it fast
         'article_url_contains': None,
         'referer': 'https://www.bbc.com/news',
     },
@@ -170,7 +175,7 @@ SOURCE_CONFIG = [
         'name': 'Times of India',
         'rss_url': 'https://timesofindia.indiatimes.com/rssfeeds/296589292.cms',
         'rss_headers_type': 'feedfetcher',
-        'article_strategies': ['selenium_browser'], # Was blocked, use Selenium
+        'article_strategies': ['selenium_browser'],  # Was blocked, use Selenium
         'article_url_contains': '.cms',
         'referer': 'https://timesofindia.indiatimes.com/',
     },
@@ -178,7 +183,7 @@ SOURCE_CONFIG = [
         'name': 'The Guardian',
         'rss_url': 'https://www.theguardian.com/world/rss',
         'rss_headers_type': 'feedfetcher',
-        'article_strategies': ['requests_browser'], # Works fine, keep it fast
+        'article_strategies': ['requests_browser'],  # Works fine, keep it fast
         'article_url_contains': None,
         'referer': 'https://www.theguardian.com/',
     },
@@ -186,31 +191,23 @@ SOURCE_CONFIG = [
         'name': 'The Hindu',
         'rss_url': 'https://www.thehindu.com/news/national/feeder/default.rss',
         'rss_headers_type': 'browser',
-        'article_strategies': ['selenium_browser'], # Was blocked, use Selenium
+        'article_strategies': ['selenium_browser'],  # Was blocked, use Selenium
         'article_url_contains': None,
         'referer': 'https://www.thehindu.com/',
-    },
-    {
-        'name': 'Reuters',
-        'rss_url': 'https://feeds.reuters.com/reuters/worldNews',
-        'rss_headers_type': 'feedfetcher',
-        'article_strategies': ['requests_browser'], # Works fine, keep it fast
-        'article_url_contains': None,
-        'referer': 'https://www.reuters.com/',
     }
 ]
 # -----------------------------------------------
 
 # Configure logging
-logging.basicConfig(filename='news_scraper.log', 
-                    filemode='a', 
+logging.basicConfig(filename='news_scraper.log',
+                    filemode='a',
                     level=logging.INFO,
                     format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Initialize SQLite DB and table
 db_path = 'news_articles.db'
 logging.info(f"Initializing database connection at: {db_path}")
-conn = sqlite3.connect(db_path, check_same_thread=False) # check_same_thread=False is safer with Selenium
+conn = sqlite3.connect(db_path, check_same_thread=False)  # check_same_thread=False is required for multi-threading
 cursor = conn.cursor()
 cursor.execute('''
 CREATE TABLE IF NOT EXISTS news (
@@ -225,11 +222,20 @@ CREATE TABLE IF NOT EXISTS news (
 ''')
 conn.commit()
 
+# --- NEW: Thread lock for database ---
+# This lock prevents two threads from writing to the DB at the exact same time
+db_lock = threading.Lock()
+# -------------------------------------
+
 def save_article(source, title, url, summary, image_url):
     """
     Saves a single article to the SQLite database.
     Prevents duplicates based on the 'url' column.
     Cleans data before saving.
+    
+    --- NEW ---
+    This function is now thread-safe using db_lock.
+    Returns True if a new article was saved, False otherwise.
     """
     try:
         # --- MORE ROBUST CLEANING ---
@@ -249,17 +255,30 @@ def save_article(source, title, url, summary, image_url):
             image_url = "No image available"
         # ----------------------------
 
-        cursor.execute('''
-            INSERT INTO news (source, title, url, summary, image_url, scraped_at) 
-            VALUES (?, ?, ?, ?, ?, ?)
-        ''', (source, title, url, summary, image_url, datetime.now()))
-        conn.commit()
+        # --- THREAD-SAFE BLOCK ---
+        with db_lock:
+            # We must acquire the lock *before* checking and inserting
+            
+            # First, check if the URL already exists
+            cursor.execute("SELECT id FROM news WHERE url = ?", (url,))
+            if cursor.fetchone():
+                logging.info(f"Duplicate article skipped: {title} from {source}")
+                return False # Not saved
+            
+            # If not found, insert it
+            cursor.execute('''
+                INSERT INTO news (source, title, url, summary, image_url, scraped_at) 
+                VALUES (?, ?, ?, ?, ?, ?)
+            ''', (source, title, url, summary, image_url, datetime.now()))
+            conn.commit()
+        # -------------------------
+        
         logging.info(f"Saved article: {title} from {source}")
-    except sqlite3.IntegrityError:
-        # This is expected if the article URL is already in the DB
-        logging.info(f"Duplicate article skipped: {title} from {source}")
+        return True # Saved
+        
     except Exception as e:
-        logging.error(f"Error saving article: {e}")
+        logging.error(f"Error saving article {title}: {e}")
+        return False # Not saved
 
 # --- RE-ARCHITECTED: Generic Scraper Function with Strategy Loop ---
 def scrape_source(session, selenium_driver, source_config, proxies_dict):
@@ -271,7 +290,10 @@ def scrape_source(session, selenium_driver, source_config, proxies_dict):
     name = source_config['name']
     rss_url = source_config['rss_url']
     
-    articles_saved = []
+    # --- MODIFIED: Return count of *saved* articles ---
+    articles_saved_list = []
+    # --------------------------------------------------
+    
     logging.info(f"Starting scrape for {name} RSS feed: {rss_url}")
     
     try:
@@ -335,8 +357,21 @@ def scrape_source(session, selenium_driver, source_config, proxies_dict):
                                 continue # Try next strategy
                             
                             selenium_driver.get(article_url)
-                            # --- TIMEOUT FIX: Increase sleep to 5 seconds ---
-                            time.sleep(5) 
+                            
+                            # --- MODIFIED: Use Explicit Wait instead of time.sleep() ---
+                            # This is *much* faster and more reliable.
+                            # We wait up to 10s for *any* <p> tag to appear.
+                            # This indicates the main content has likely started loading.
+                            try:
+                                WebDriverWait(selenium_driver, 10).until(
+                                    EC.presence_of_element_located((By.TAG_NAME, "p"))
+                                )
+                                logging.info(f"[{name}] Page content loaded.")
+                            except TimeoutException:
+                                # If no <p> tags appear, the page is likely broken
+                                logging.warning(f"[{name}] Page timed out (10s). No <p> tags found. Proceeding anyway.")
+                            # -----------------------------------------------------------
+                            
                             raw_html = selenium_driver.page_source
                         
                         else:
@@ -356,8 +391,14 @@ def scrape_source(session, selenium_driver, source_config, proxies_dict):
                         except Exception as e:
                             logging.error(f"[{name}] trafilatura failed to parse HTML: {e}")
                         
-                        if temp_summary and len(temp_summary) > 100:
-                            logging.info(f"[{name}] Success with '{strategy}'. Found content.")
+                        # --- NEW: Check word count ---
+                        word_count = 0
+                        if temp_summary:
+                            word_count = len(temp_summary.split())
+                        
+                        if word_count >= 80:
+                        # ---------------------------
+                            logging.info(f"[{name}] Success with '{strategy}'. Found content ({word_count} words).")
                             summary = temp_summary
                             
                             # Since we have good HTML, parse metadata
@@ -372,11 +413,13 @@ def scrape_source(session, selenium_driver, source_config, proxies_dict):
                             
                             break # <-- Success! Exit the strategy loop.
                         else:
-                            logging.warning(f"[{name}] FAILED with '{strategy}' (content was empty or too short).")
+                            logging.warning(f"[{name}] FAILED with '{strategy}' (content was too short: {word_count} words).")
                     
                     except Exception as e:
                         # Catching errors from requests OR selenium
-                        logging.error(f"[{name}] Request failed for strategy '{strategy}': {e}")
+                        # --- MODIFIED: Log the specific URL in this error ---
+                        logging.error(f"[{name}] Request failed for strategy '{strategy}' on URL {article_url}: {e}")
+                        # ----------------------------------------------------
                     
                     # Wait a moment before trying the next strategy
                     if i < len(strategies) - 1:
@@ -396,8 +439,11 @@ def scrape_source(session, selenium_driver, source_config, proxies_dict):
                         summary = "No content available"
 
                 # 6. Save
-                save_article(name, final_title, article_url, summary, image_url)
-                articles_saved.append(final_title)
+                # --- MODIFIED: Check return value from save_article ---
+                was_saved = save_article(name, final_title, article_url, summary, image_url)
+                if was_saved:
+                    articles_saved_list.append(final_title)
+                # ------------------------------------------------------
                 
                 time.sleep(random.uniform(0.5, 1.5)) # Politeness delay between *articles*
 
@@ -412,20 +458,73 @@ def scrape_source(session, selenium_driver, source_config, proxies_dict):
         # This catches errors parsing the RSS feed itself
         logging.error(f"Failed to parse {name} RSS feed: {e}")
         
-    return articles_saved
+    return (name, len(articles_saved_list)) # <-- Return the count of *saved* articles
+
+# --- NEW: Thread Wrapper Function ---
+def scrape_source_wrapper(source, session, proxies_dict):
+    """
+    A wrapper function to be run in a separate thread.
+    It creates and destroys its own Selenium driver if needed.
+    """
+    name = source.get('name', 'Unknown')
+    driver = None
+    
+    # Check if *any* strategy for this source needs selenium
+    needs_selenium = any('selenium' in s for s in source.get('article_strategies', []))
+    
+    try:
+        if needs_selenium:
+            logging.info(f"[{name}] (Thread) requires Selenium. Initializing driver...")
+            driver = create_selenium_driver() # Create a driver *inside* the thread
+            if not driver:
+                logging.error(f"[{name}] (Thread) Selenium driver failed to start. This source will fail.")
+                # We can still proceed, but selenium_browser strategies will be skipped
+        
+        # Pass the (possibly None) driver to the main scrape function
+        return scrape_source(session, driver, source, proxies_dict)
+    
+    except Exception as e:
+        logging.critical(f"--- CRITICAL: (Thread) Scrape job for {name} failed entirely. --- {e}")
+        return (name, 0) # Return 0 saved
+    
+    finally:
+        # --- MODIFIED: "Surgical Kill" for the driver ---
+        # This is the robust way to clean up a stuck driver.
+        if driver:
+            logging.info(f"[{name}] (Thread) Finished. Attempting to shut down its Selenium driver.")
+            pid_to_kill = None
+            try:
+                # Get the Process ID (PID) of the chromedriver service
+                pid_to_kill = driver.service.process.pid
+            except Exception:
+                pass # If we can't get it, we can't kill it.
+            
+            try:
+                # Try the clean quit first
+                driver.quit()
+                logging.info(f"[{name}] (Thread) driver.quit() successful.")
+            except Exception as e:
+                # If driver.quit() fails (e.g., hangs or errors)
+                logging.warning(f"[{name}] (Thread) driver.quit() failed: {e}. Attempting surgical kill.")
+                if pid_to_kill:
+                    try:
+                        os.kill(pid_to_kill, 9) # 9 = SIGKILL
+                        logging.info(f"[{name}] (Thread) Successfully killed stuck driver process PID {pid_to_kill}.")
+                    except Exception as e_kill:
+                        logging.error(f"[{name}] (Thread) Failed to kill process PID {pid_to_kill}: {e_kill}")
+                else:
+                    logging.error(f"[{name}] (Thread) driver.quit() failed, but PID was not found. A zombie process may remain.")
+            
 
 # --- REFACTORED: scrape_all() ---
 def scrape_all():
     """
-    Runs all scraping jobs defined in SOURCE_CONFIG.
-    --- NEW ---
-    Creates and destroys its own Selenium driver for each run
-    to prevent "invalid session id" errors.
+    Runs all scraping jobs defined in SOURCE_CONFIG in parallel.
+    Implements a 5-minute (300s) timeout for the entire job.
     """
-    logging.info("--- Starting new scraping job ---")
+    logging.info("--- Starting new scraping job (Parallel Mode) ---")
     
-    session = create_robust_session() # Create one session for the whole job
-    driver = None # Initialize driver as None
+    session = create_robust_session() # Create one session for all threads
     
     # --- NEW: Create proxy dictionary from settings ---
     proxies_dict = None
@@ -440,33 +539,54 @@ def scrape_all():
     # --------------------------------------------------
     
     all_counts = {}
-    total_saved = 0 
+    total_saved = 0
+    futures = [] # To store the thread tasks
     
-    # This is the robust "at any cost" logic.
-    # We wrap the *entire* job in a try/finally block
-    # to ensure the Selenium driver is ALWAYS shut down,
-    # even if the script crashes. This prevents "stale" drivers.
-    try:
-        # --- NEW: Create driver inside the job ---
-        logging.info("Attempting to initialize Selenium driver for this run...")
-        driver = create_selenium_driver()
-        if not driver:
-            logging.warning("Selenium driver failed to start. Sites requiring Selenium will fail.")
-        # ---------------------------------------
+    # --- MODIFIED: Use manual executor, not `with` block ---
+    # This allows us to shut it down without waiting (wait=False)
+    executor = ThreadPoolExecutor(max_workers=len(SOURCE_CONFIG))
 
+    try:
+        # 1. Submit all jobs to the thread pool
         for source in SOURCE_CONFIG:
-            # We wrap each source scrape in its own try/except
-            # so that if one source (e.g. BBC) fails completely,
-            # it doesn't stop the others (e.g. TOI) from running.
+            # Submit the wrapper function, not the main scrape function
+            future = executor.submit(scrape_source_wrapper, source, session, proxies_dict)
+            futures.append(future)
+
+        logging.info(f"Submitted {len(futures)} jobs to thread pool. Waiting up to 300s for completion...")
+        
+        # 2. Wait for jobs to complete, with a 5-minute (300s) timeout
+        # `wait` returns two sets: one for done, one for not_done (timed out)
+        done, not_done = wait(futures, timeout=300)
+
+        # 3. Process completed jobs
+        for future in done:
             try:
-                # --- UPDATED: Pass proxies_dict to scrape_source ---
-                articles_saved = scrape_source(session, driver, source, proxies_dict) # Pass the (possibly None) driver
-                count = len(articles_saved)
-                all_counts[source['name']] = count
-                total_saved += count # Add to total
+                name, count = future.result() # Get the (name, count) tuple
+                all_counts[name] = count
+                total_saved += count
             except Exception as e:
-                logging.critical(f"--- CRITICAL: Scrape job for {source['name']} failed entirely. --- {e}")
-                all_counts[source['name']] = 0
+                logging.error(f"A future job resulted in an error: {e}")
+        
+        # 4. Handle jobs that timed out
+        if not_done:
+            logging.critical(f"--- TIMEOUT: {len(not_done)} scrape jobs did not complete in 300s. ---")
+            for future in not_done:
+                # We can't get a result, so we just log them as 'Timed Out'
+                # A more complex setup could map futures back to source names
+                logging.error("A thread has timed out and will be abandoned.")
+                # We can't easily get the 'name' here, so we'll just log a generic count
+                all_counts["Timed_Out_Jobs"] = all_counts.get("Timed_Out_Jobs", 0) + 1
+
+    except Exception as e:
+        logging.critical(f"--- CRITICAL: The entire scrape_all job failed. --- {e}")
+        
+    finally:
+        # 5. Shut down the executor
+        # This is CRITICAL. wait=False tells the main thread to exit
+        # even if a zombie thread (stuck on driver.quit()) is still running.
+        logging.info("Shutting down thread pool (wait=False)...")
+        executor.shutdown(wait=False)
         
         # Create a dynamic log message
         log_summary = ", ".join(f"{count} {name}" for name, count in all_counts.items())
@@ -474,18 +594,7 @@ def scrape_all():
         
         logging.info(log_message)
         print(log_message)
-    
-    except Exception as e:
-        logging.critical(f"--- CRITICAL: The entire scrape_all job failed. --- {e}")
         
-    finally:
-        # --- NEW: Quit the driver at the end of the job ---
-        # This is the most important part for stability.
-        # This block will run NO MATTER WHAT, even if the
-        # script crashes, preventing "invalid session id" errors.
-        if driver:
-            logging.info("Shutting down Selenium driver for this run.")
-            driver.quit()
         logging.info("--- Scraping job finished ---")
 
 
@@ -516,6 +625,13 @@ def main():
             conn.close() # Ensure database connection is closed on exit
             logging.info("--- Scraper service stopped and database connection closed. ---")
             print("Scraper stopped and database connection closed.")
+        
+        # --- NEW: ADDED "KILL SWITCH" ---
+        # This is the 100% guaranteed way to terminate the process
+        # in a CI environment if a zombie thread is still running.
+        # We do this *after* the database is closed and logs are written.
+        logging.info("--- Main thread finished. Forcing process exit to kill zombie threads. ---")
+        os._exit(0) # 0 = successful exit
 
 if __name__ == '__main__':
     main()
