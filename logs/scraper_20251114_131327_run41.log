@@ -1,0 +1,118 @@
+2025-11-14 12:44:35,680 - INFO - Initializing database connection at: news_articles.db
+2025-11-14 12:44:35,681 - INFO - --- Scraper service started (CI Mode: Run Once) ---
+2025-11-14 12:44:35,681 - INFO - --- Starting new scraping job ---
+2025-11-14 12:44:35,681 - INFO - Creating new robust session with 3 retries on 5xx errors.
+2025-11-14 12:44:35,681 - INFO - Proxy is DISABLED.
+2025-11-14 12:44:35,681 - INFO - Attempting to initialize Selenium driver for this run...
+2025-11-14 12:44:35,681 - INFO - Initializing headless Selenium Chrome driver (using SeleniumManager)...
+2025-11-14 12:44:43,202 - INFO - Selenium driver initialized successfully.
+2025-11-14 12:44:43,203 - INFO - Starting scrape for BBC RSS feed: http://feeds.bbci.co.uk/news/world/rss.xml
+2025-11-14 12:44:43,646 - INFO - Found 22 articles in BBC RSS feed. Processing up to 5.
+2025-11-14 12:44:43,647 - INFO - [BBC] Article: https://www.bbc.com/news/articles/cn4jn94gyllo?at_medium=RSS&at_campaign=rss
+2025-11-14 12:44:43,647 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-14 12:44:43,867 - INFO - [BBC] Success with 'requests_browser'. Found content.
+2025-11-14 12:44:43,911 - INFO - Saved article: Russian drone slams into block of flats killing four in strikes across Kyiv from BBC
+2025-11-14 12:44:45,112 - INFO - [BBC] Article: https://www.bbc.com/news/articles/c874nw4g2zzo?at_medium=RSS&at_campaign=rss
+2025-11-14 12:44:45,112 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-14 12:44:45,145 - INFO - [BBC] Success with 'requests_browser'. Found content.
+2025-11-14 12:44:45,178 - INFO - Saved article: BBC apologises to Trump over Panorama edit but refuses to pay compensation from BBC
+2025-11-14 12:44:46,173 - INFO - [BBC] Article: https://www.bbc.com/news/articles/c4gpkerdn9qo?at_medium=RSS&at_campaign=rss
+2025-11-14 12:44:46,173 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-14 12:44:46,203 - INFO - [BBC] Success with 'requests_browser'. Found content.
+2025-11-14 12:44:46,235 - INFO - Duplicate article skipped: Germany agrees new military service plan to boost troop numbers from BBC
+2025-11-14 12:44:47,622 - INFO - [BBC] Article: https://www.bbc.com/news/articles/c17p1nwy7q8o?at_medium=RSS&at_campaign=rss
+2025-11-14 12:44:47,622 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-14 12:44:47,659 - INFO - [BBC] Success with 'requests_browser'. Found content.
+2025-11-14 12:44:47,695 - INFO - Saved article: Sudan conflict: Marco Rubio calls for international action to cut weapons supplies to RSF from BBC
+2025-11-14 12:44:48,667 - INFO - [BBC] Article: https://www.bbc.com/news/articles/czxnerkx5pgo?at_medium=RSS&at_campaign=rss
+2025-11-14 12:44:48,667 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-14 12:44:49,113 - INFO - [BBC] Success with 'requests_browser'. Found content.
+2025-11-14 12:44:49,143 - INFO - Duplicate article skipped: Israel confirms identity of hostage body returned by Hamas as Manny Godard from BBC
+2025-11-14 12:44:50,380 - INFO - Starting scrape for Times of India RSS feed: https://timesofindia.indiatimes.com/rssfeeds/296589292.cms
+2025-11-14 12:44:50,488 - INFO - Found 20 articles in Times of India RSS feed. Processing up to 5.
+2025-11-14 12:44:50,488 - INFO - [Times of India] Article: https://timesofindia.indiatimes.com/world/us-streamers/most-popular-streamers-and-their-roblox-usernames-in-2025/articleshow/125327528.cms
+2025-11-14 12:44:50,488 - INFO - [Times of India] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-14 12:46:50,528 - ERROR - [Times of India] Request failed for strategy 'selenium_browser': HTTPConnectionPool(host='localhost', port=35975): Read timed out. (read timeout=120)
+2025-11-14 12:46:50,528 - ERROR - [Times of India] All scrape strategies failed for https://timesofindia.indiatimes.com/world/us-streamers/most-popular-streamers-and-their-roblox-usernames-in-2025/articleshow/125327528.cms. Falling back to RSS description.
+2025-11-14 12:46:50,530 - INFO - Saved article: Most popular streamers and their Roblox usernames in 2025 from Times of India
+2025-11-14 12:46:51,725 - INFO - [Times of India] Article: https://timesofindia.indiatimes.com/world/middle-east/yo-yo-honey-singh-returns-to-dubai-stage-for-global-tour-kick-off-how-to-grab-your-tickets/articleshow/125327207.cms
+2025-11-14 12:46:51,725 - INFO - [Times of India] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-14 12:48:51,827 - ERROR - [Times of India] Request failed for strategy 'selenium_browser': HTTPConnectionPool(host='localhost', port=35975): Read timed out. (read timeout=120)
+2025-11-14 12:48:51,827 - ERROR - [Times of India] All scrape strategies failed for https://timesofindia.indiatimes.com/world/middle-east/yo-yo-honey-singh-returns-to-dubai-stage-for-global-tour-kick-off-how-to-grab-your-tickets/articleshow/125327207.cms. Falling back to RSS description.
+2025-11-14 12:48:51,829 - INFO - Saved article: Yo Yo Honey Singh returns to Dubai stage for global tour kick-off, how to grab your tickets from Times of India
+2025-11-14 12:48:53,213 - INFO - [Times of India] Article: https://timesofindia.indiatimes.com/life-style/health-fitness/health-news/warning-the-sun-might-be-secretly-racing-your-aging-us-heatwave-hotspotsexposed/articleshow/125322688.cms
+2025-11-14 12:48:53,213 - INFO - [Times of India] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-14 12:50:53,284 - ERROR - [Times of India] Request failed for strategy 'selenium_browser': HTTPConnectionPool(host='localhost', port=35975): Read timed out. (read timeout=120)
+2025-11-14 12:50:53,284 - ERROR - [Times of India] All scrape strategies failed for https://timesofindia.indiatimes.com/life-style/health-fitness/health-news/warning-the-sun-might-be-secretly-racing-your-aging-us-heatwave-hotspotsexposed/articleshow/125322688.cms. Falling back to RSS description.
+2025-11-14 12:50:53,286 - INFO - Saved article: Warning! The Sun might be secretly racing your aging; US heatwave hotspots exposed from Times of India
+2025-11-14 12:50:54,182 - INFO - [Times of India] Article: https://timesofindia.indiatimes.com/science/30000-fossils-uncovered-in-the-arctic-show-how-oceans-came-back-to-life-after-the-great-dying/articleshow/125321390.cms
+2025-11-14 12:50:54,182 - INFO - [Times of India] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-14 12:52:54,263 - ERROR - [Times of India] Request failed for strategy 'selenium_browser': HTTPConnectionPool(host='localhost', port=35975): Read timed out. (read timeout=120)
+2025-11-14 12:52:54,263 - ERROR - [Times of India] All scrape strategies failed for https://timesofindia.indiatimes.com/science/30000-fossils-uncovered-in-the-arctic-show-how-oceans-came-back-to-life-after-the-great-dying/articleshow/125321390.cms. Falling back to RSS description.
+2025-11-14 12:52:54,265 - INFO - Saved article: 30,000 fossils uncovered in the Arctic show how oceans came back to life after the ‘Great Dying’ from Times of India
+2025-11-14 12:52:55,324 - INFO - [Times of India] Article: https://timesofindia.indiatimes.com/world/middle-east/dubai-is-giving-away-aed-2-5-million-to-app-creators-globally-heres-how-to-enter-the-challenge/articleshow/125319043.cms
+2025-11-14 12:52:55,325 - INFO - [Times of India] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-14 12:54:55,372 - ERROR - [Times of India] Request failed for strategy 'selenium_browser': HTTPConnectionPool(host='localhost', port=35975): Read timed out. (read timeout=120)
+2025-11-14 12:54:55,373 - ERROR - [Times of India] All scrape strategies failed for https://timesofindia.indiatimes.com/world/middle-east/dubai-is-giving-away-aed-2-5-million-to-app-creators-globally-heres-how-to-enter-the-challenge/articleshow/125319043.cms. Falling back to RSS description.
+2025-11-14 12:54:55,374 - INFO - Saved article: Dubai is giving away AED 2.5 million to app creators globally, Here's how to enter the challenge from Times of India
+2025-11-14 12:54:56,519 - INFO - Starting scrape for The Guardian RSS feed: https://www.theguardian.com/world/rss
+2025-11-14 12:54:56,629 - INFO - Found 44 articles in The Guardian RSS feed. Processing up to 5.
+2025-11-14 12:54:56,629 - INFO - [The Guardian] Article: https://www.theguardian.com/world/2025/nov/14/anger-south-africa-plane-palestinians-held-12-hours
+2025-11-14 12:54:56,629 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-14 12:54:56,665 - INFO - [The Guardian] Success with 'requests_browser'. Found content.
+2025-11-14 12:54:56,703 - INFO - Saved article: Anger in South Africa after Palestinians held on plane for 12 hours | South Africa | The Guardian from The Guardian
+2025-11-14 12:54:58,192 - INFO - [The Guardian] Article: https://www.theguardian.com/world/2025/nov/14/british-egyptian-activist-alaa-abd-el-fattah-stopped-from-flying-to-uk-says-family
+2025-11-14 12:54:58,193 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-14 12:54:58,310 - INFO - [The Guardian] Success with 'requests_browser'. Found content.
+2025-11-14 12:54:58,357 - INFO - Saved article: British-Egyptian activist stopped from flying to UK, says family | Egypt | The Guardian from The Guardian
+2025-11-14 12:54:59,835 - INFO - [The Guardian] Article: https://www.theguardian.com/world/2025/nov/12/state-sanctioned-fuel-smuggling-cost-libya-20bn-over-three-years-report
+2025-11-14 12:54:59,835 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-14 12:54:59,948 - INFO - [The Guardian] Success with 'requests_browser'. Found content.
+2025-11-14 12:54:59,984 - INFO - Duplicate article skipped: State-sanctioned fuel smuggling cost Libya $20bn over three years – report | Libya | The Guardian from The Guardian
+2025-11-14 12:55:01,409 - INFO - [The Guardian] Article: https://www.theguardian.com/global-development/2025/nov/13/british-american-tobacco-africa-zambia-uk
+2025-11-14 12:55:01,409 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-14 12:55:01,515 - INFO - [The Guardian] Success with 'requests_browser'. Found content.
+2025-11-14 12:55:01,553 - INFO - Duplicate article skipped: ‘Utter hypocrisy’: tobacco firm lobbied against rules in Africa that are law in UK | Global development | The Guardian from The Guardian
+2025-11-14 12:55:03,004 - INFO - [The Guardian] Article: https://www.theguardian.com/world/2025/nov/12/french-algerian-writer-boualem-sansal-pardoned-and-to-be-released-from-prison
+2025-11-14 12:55:03,004 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2025-11-14 12:55:03,034 - INFO - [The Guardian] Success with 'requests_browser'. Found content.
+2025-11-14 12:55:03,066 - INFO - Duplicate article skipped: French-Algerian writer Boualem Sansal pardoned and to be released from prison | Algeria | The Guardian from The Guardian
+2025-11-14 12:55:04,291 - INFO - Starting scrape for The Hindu RSS feed: https://www.thehindu.com/news/national/feeder/default.rss
+2025-11-14 12:55:04,454 - INFO - Found 100 articles in The Hindu RSS feed. Processing up to 5.
+2025-11-14 12:55:04,454 - INFO - [The Hindu] Article: https://www.thehindu.com/news/national/telangana/loss-of-deposit-for-bjp-and-loss-of-face-for-brs-chief-minister-revanth-reddy/article70279918.ece
+2025-11-14 12:55:04,454 - INFO - [The Hindu] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-14 12:57:04,555 - ERROR - [The Hindu] Request failed for strategy 'selenium_browser': HTTPConnectionPool(host='localhost', port=35975): Read timed out. (read timeout=120)
+2025-11-14 12:57:04,556 - ERROR - [The Hindu] All scrape strategies failed for https://www.thehindu.com/news/national/telangana/loss-of-deposit-for-bjp-and-loss-of-face-for-brs-chief-minister-revanth-reddy/article70279918.ece. Falling back to RSS description.
+2025-11-14 12:57:04,558 - INFO - Saved article: Loss of deposit for BJP and loss of face for BRS: Chief Minister Revanth Reddy from The Hindu
+2025-11-14 12:57:05,442 - INFO - [The Hindu] Article: https://www.thehindu.com/news/national/tamil-nadu/tamil-nadu-chief-minister-extends-childrens-day-greetings/article70278722.ece
+2025-11-14 12:57:05,442 - INFO - [The Hindu] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-14 12:59:05,529 - ERROR - [The Hindu] Request failed for strategy 'selenium_browser': HTTPConnectionPool(host='localhost', port=35975): Read timed out. (read timeout=120)
+2025-11-14 12:59:05,529 - ERROR - [The Hindu] All scrape strategies failed for https://www.thehindu.com/news/national/tamil-nadu/tamil-nadu-chief-minister-extends-childrens-day-greetings/article70278722.ece. Falling back to RSS description.
+2025-11-14 12:59:05,531 - INFO - Saved article: Tamil Nadu Chief Minister extends Children’s Day greetings from The Hindu
+2025-11-14 12:59:06,552 - INFO - [The Hindu] Article: https://www.thehindu.com/news/cities/Coimbatore/tn-defence-industrial-corridor-attracts-investments-worth-29000-crore/article70279014.ece
+2025-11-14 12:59:06,552 - INFO - [The Hindu] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-14 13:01:06,652 - ERROR - [The Hindu] Request failed for strategy 'selenium_browser': HTTPConnectionPool(host='localhost', port=35975): Read timed out. (read timeout=120)
+2025-11-14 13:01:06,652 - ERROR - [The Hindu] All scrape strategies failed for https://www.thehindu.com/news/cities/Coimbatore/tn-defence-industrial-corridor-attracts-investments-worth-29000-crore/article70279014.ece. Falling back to RSS description.
+2025-11-14 13:01:06,654 - INFO - Saved article: T.N. Defence Industrial Corridor attracts investments worth ₹29,000 crore from The Hindu
+2025-11-14 13:01:08,035 - INFO - [The Hindu] Article: https://www.thehindu.com/elections/bihar-assembly/bihar-assembly-election-results-notas-share-up-from-2020-but-much-lower-than-2015/article70280006.ece
+2025-11-14 13:01:08,035 - INFO - [The Hindu] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-14 13:03:08,053 - ERROR - [The Hindu] Request failed for strategy 'selenium_browser': HTTPConnectionPool(host='localhost', port=35975): Read timed out. (read timeout=120)
+2025-11-14 13:03:08,053 - ERROR - [The Hindu] All scrape strategies failed for https://www.thehindu.com/elections/bihar-assembly/bihar-assembly-election-results-notas-share-up-from-2020-but-much-lower-than-2015/article70280006.ece. Falling back to RSS description.
+2025-11-14 13:03:08,055 - INFO - Saved article: Bihar Assembly election results: NOTA’s share up from 2020 but much lower than 2015 from The Hindu
+2025-11-14 13:03:09,495 - INFO - [The Hindu] Article: https://www.thehindu.com/elections/bihar-assembly/newbie-jan-suraaj-party-falters-in-bihar-assembly-elections/article70279861.ece
+2025-11-14 13:03:09,495 - INFO - [The Hindu] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2025-11-14 13:05:09,596 - ERROR - [The Hindu] Request failed for strategy 'selenium_browser': HTTPConnectionPool(host='localhost', port=35975): Read timed out. (read timeout=120)
+2025-11-14 13:05:09,596 - ERROR - [The Hindu] All scrape strategies failed for https://www.thehindu.com/elections/bihar-assembly/newbie-jan-suraaj-party-falters-in-bihar-assembly-elections/article70279861.ece. Falling back to RSS description.
+2025-11-14 13:05:09,597 - INFO - Saved article: Newbie Jan Suraaj Party falters in Bihar Assembly elections from The Hindu
+2025-11-14 13:05:10,731 - INFO - Starting scrape for Reuters RSS feed: https://feeds.reuters.com/reuters/worldNews
+2025-11-14 13:05:10,806 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7fc34ef99a80>: Failed to resolve 'feeds.reuters.com' ([Errno -2] Name or service not known)")': /reuters/worldNews
+2025-11-14 13:05:12,941 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7fc34ef99840>: Failed to resolve 'feeds.reuters.com' ([Errno -2] Name or service not known)")': /reuters/worldNews
+2025-11-14 13:05:17,017 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7fc34ef996c0>: Failed to resolve 'feeds.reuters.com' ([Errno -2] Name or service not known)")': /reuters/worldNews
+2025-11-14 13:05:17,092 - ERROR - Failed to fetch Reuters RSS feed: HTTPSConnectionPool(host='feeds.reuters.com', port=443): Max retries exceeded with url: /reuters/worldNews (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7fc34ef994b0>: Failed to resolve 'feeds.reuters.com' ([Errno -2] Name or service not known)"))
+2025-11-14 13:05:17,092 - INFO - Scraped: 5 BBC, 5 Times of India, 5 The Guardian, 5 The Hindu, 0 Reuters articles. (Total saved: 20)
+2025-11-14 13:05:17,093 - INFO - Shutting down Selenium driver for this run.
+2025-11-14 13:07:17,193 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPConnectionPool(host='localhost', port=35975): Read timed out. (read timeout=120)")': /session/5405deca5488ba6696658d0b2957c5a3
+2025-11-14 13:09:17,256 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPConnectionPool(host='localhost', port=35975): Read timed out. (read timeout=120)")': /session/5405deca5488ba6696658d0b2957c5a3
+2025-11-14 13:11:17,357 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPConnectionPool(host='localhost', port=35975): Read timed out. (read timeout=120)")': /session/5405deca5488ba6696658d0b2957c5a3
+2025-11-14 13:13:27,384 - INFO - --- Scraping job finished ---
+2025-11-14 13:13:27,384 - INFO - --- Scraper service stopped and database connection closed. ---
