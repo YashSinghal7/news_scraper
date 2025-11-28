@@ -3,7 +3,7 @@
 #
 # How many articles to get from each source (e.g., 25)
 # This is a 'max' value. If a feed only has 20 articles, it will get 20.
-MAX_ARTICLES_PER_SOURCE = 10
+MAX_ARTICLES_PER_SOURCE = 25
 #
 # --- NEW: PROXY CONFIGURATION ---
 # Set 'use_proxies' to True to route all requests (Requests & Selenium)
@@ -520,7 +520,7 @@ def scrape_source_wrapper(source, session, proxies_dict):
 def scrape_all():
     """
     Runs all scraping jobs defined in SOURCE_CONFIG in parallel.
-    Implements a 5-minute (300s) timeout for the entire job.
+    Implements a 5-minute (420s) timeout for the entire job.
     """
     logging.info("--- Starting new scraping job (Parallel Mode) ---")
     
@@ -553,11 +553,11 @@ def scrape_all():
             future = executor.submit(scrape_source_wrapper, source, session, proxies_dict)
             futures.append(future)
 
-        logging.info(f"Submitted {len(futures)} jobs to thread pool. Waiting up to 300s for completion...")
+        logging.info(f"Submitted {len(futures)} jobs to thread pool. Waiting up to 420s for completion...")
         
-        # 2. Wait for jobs to complete, with a 5-minute (300s) timeout
+        # 2. Wait for jobs to complete, with a 7-minute (420s) timeout
         # `wait` returns two sets: one for done, one for not_done (timed out)
-        done, not_done = wait(futures, timeout=300)
+        done, not_done = wait(futures, timeout=420)
 
         # 3. Process completed jobs
         for future in done:
@@ -570,7 +570,7 @@ def scrape_all():
         
         # 4. Handle jobs that timed out
         if not_done:
-            logging.critical(f"--- TIMEOUT: {len(not_done)} scrape jobs did not complete in 300s. ---")
+            logging.critical(f"--- TIMEOUT: {len(not_done)} scrape jobs did not complete in 420s. ---")
             for future in not_done:
                 # We can't get a result, so we just log them as 'Timed Out'
                 # A more complex setup could map futures back to source names
