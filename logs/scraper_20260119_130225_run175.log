@@ -1,0 +1,272 @@
+2026-01-19 12:55:25,524 - INFO - Initializing database connection at: news_articles.db
+2026-01-19 12:55:25,524 - INFO - --- Scraper service started (CI Mode: Run Once) ---
+2026-01-19 12:55:25,524 - INFO - --- Starting new scraping job (Parallel Mode) ---
+2026-01-19 12:55:25,524 - INFO - Creating new robust session with 3 retries on 5xx/connection/read errors.
+2026-01-19 12:55:25,524 - INFO - Proxy is DISABLED.
+2026-01-19 12:55:25,525 - INFO - Starting scrape for BBC RSS feed: http://feeds.bbci.co.uk/news/world/rss.xml
+2026-01-19 12:55:25,525 - INFO - [Times of India] (Thread) requires Selenium. Initializing driver...
+2026-01-19 12:55:25,525 - INFO - Initializing headless Selenium Chrome driver (using SeleniumManager)...
+2026-01-19 12:55:25,526 - INFO - Starting scrape for The Guardian RSS feed: https://www.theguardian.com/world/rss
+2026-01-19 12:55:25,527 - INFO - [The Hindu] (Thread) requires Selenium. Initializing driver...
+2026-01-19 12:55:25,527 - INFO - Initializing headless Selenium Chrome driver (using SeleniumManager)...
+2026-01-19 12:55:25,527 - INFO - Submitted 4 jobs to thread pool. Waiting up to 420s for completion...
+2026-01-19 12:55:25,630 - INFO - Found 26 articles in BBC RSS feed. Processing up to 25.
+2026-01-19 12:55:25,630 - INFO - [BBC] Article: https://www.bbc.com/news/articles/cedw6ylpynyo?at_medium=RSS&at_campaign=rss
+2026-01-19 12:55:25,630 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:25,679 - INFO - Found 45 articles in The Guardian RSS feed. Processing up to 25.
+2026-01-19 12:55:25,679 - INFO - [The Guardian] Article: https://www.theguardian.com/global-development/2026/jan/19/brazen-political-influence-rich-laid-bare-wealth-billionaires-inequality-poverty-instability-oxfam
+2026-01-19 12:55:25,680 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:25,723 - INFO - [The Guardian] Success with 'requests_browser'. Found content (639 words).
+2026-01-19 12:55:25,783 - INFO - Duplicate article skipped: ‘Brazen’ political influence of rich laid bare as wealth of billionaires reaches $18.3tn, says Oxfam | Global development | The Guardian from The Guardian
+2026-01-19 12:55:25,793 - INFO - [BBC] Success with 'requests_browser'. Found content (820 words).
+2026-01-19 12:55:25,830 - INFO - Duplicate article skipped: High-speed train crash in Spain kills at least 39 from BBC
+2026-01-19 12:55:26,688 - INFO - [The Guardian] Article: https://www.theguardian.com/world/2026/jan/18/ugandas-president-calls-opponents-terrorists-in-victory-speech
+2026-01-19 12:55:26,689 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:26,748 - INFO - [The Guardian] Success with 'requests_browser'. Found content (533 words).
+2026-01-19 12:55:26,816 - INFO - Selenium driver initialized successfully.
+2026-01-19 12:55:26,816 - INFO - Starting scrape for Times of India RSS feed: https://timesofindia.indiatimes.com/rssfeeds/296589292.cms
+2026-01-19 12:55:26,817 - INFO - Selenium driver initialized successfully.
+2026-01-19 12:55:26,817 - INFO - Starting scrape for The Hindu RSS feed: https://www.thehindu.com/news/national/feeder/default.rss
+2026-01-19 12:55:26,818 - INFO - Duplicate article skipped: Uganda’s president calls opponents 'terrorists' in victory speech | Uganda | The Guardian from The Guardian
+2026-01-19 12:55:26,943 - INFO - Found 20 articles in Times of India RSS feed. Processing up to 25.
+2026-01-19 12:55:26,944 - INFO - [Times of India] Article: https://timesofindia.indiatimes.com/world/us/indian-origin-fedex-ceo-raj-subramaniam-breaks-silence-on-h-1b-row-says-we-are-a-meritocracy/articleshow/126678367.cms
+2026-01-19 12:55:26,944 - INFO - [Times of India] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2026-01-19 12:55:27,321 - INFO - [BBC] Article: https://www.bbc.com/news/videos/c23r1rx5vp7o?at_medium=RSS&at_campaign=rss
+2026-01-19 12:55:27,321 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:27,396 - INFO - [BBC] Success with 'requests_browser'. Found content (81 words).
+2026-01-19 12:55:27,458 - INFO - Saved article: Spain train crash survivors describe 'absolutely terrifying' scene from BBC
+2026-01-19 12:55:27,541 - INFO - [The Guardian] Article: https://www.theguardian.com/world/2026/jan/17/yoweri-museveni-wins-ugandan-election-as-opponent-condemns-fake-result
+2026-01-19 12:55:27,541 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:27,600 - INFO - Found 100 articles in The Hindu RSS feed. Processing up to 25.
+2026-01-19 12:55:27,600 - INFO - [The Hindu] Article: https://www.thehindu.com/news/national/karnataka/workshop-on-guarantee-schemes-in-shivamogga-on-january-21/article70525075.ece
+2026-01-19 12:55:27,601 - INFO - [The Hindu] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2026-01-19 12:55:27,713 - INFO - [The Guardian] Success with 'requests_browser'. Found content (462 words).
+2026-01-19 12:55:27,805 - INFO - Duplicate article skipped: Yoweri Museveni wins Ugandan election as opponent condemns ‘fake result’ | Uganda | The Guardian from The Guardian
+2026-01-19 12:55:28,337 - INFO - [The Guardian] Article: https://www.theguardian.com/uk-news/2026/jan/17/afcon-little-morocco-london-confidence-high
+2026-01-19 12:55:28,337 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:28,393 - INFO - [The Guardian] Success with 'requests_browser'. Found content (686 words).
+2026-01-19 12:55:28,470 - INFO - Duplicate article skipped: Confidence runs high in London’s Little Morocco as Afcon glory beckons | London | The Guardian from The Guardian
+2026-01-19 12:55:28,507 - INFO - [BBC] Article: https://www.bbc.com/news/articles/c4g0zx0llpzo?at_medium=RSS&at_campaign=rss
+2026-01-19 12:55:28,507 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:28,591 - INFO - [BBC] Success with 'requests_browser'. Found content (878 words).
+2026-01-19 12:55:28,703 - INFO - Saved article: US believes its power matters more than international law, UN chief António Guterres tells BBC from BBC
+2026-01-19 12:55:29,492 - INFO - [BBC] Article: https://www.bbc.com/news/articles/c0r47ey0d1vo?at_medium=RSS&at_campaign=rss
+2026-01-19 12:55:29,493 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:29,591 - INFO - [BBC] Success with 'requests_browser'. Found content (839 words).
+2026-01-19 12:55:29,678 - INFO - [The Guardian] Article: https://www.theguardian.com/environment/2026/jan/17/twin-baby-mountain-gorilla-virunga-drc-survival-conservation-aoe
+2026-01-19 12:55:29,678 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:29,710 - INFO - Saved article: IMF warns of trade tension risk to global growth from BBC
+2026-01-19 12:55:30,019 - INFO - [The Guardian] Success with 'requests_browser'. Found content (601 words).
+2026-01-19 12:55:30,164 - INFO - Duplicate article skipped: Rare twins born in DRC raise cautious hope for endangered mountain gorillas | Endangered species | The Guardian from The Guardian
+2026-01-19 12:55:30,426 - INFO - [BBC] Article: https://www.bbc.com/news/articles/cy7mev35x2lo?at_medium=RSS&at_campaign=rss
+2026-01-19 12:55:30,426 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:30,553 - INFO - [BBC] Success with 'requests_browser'. Found content (655 words).
+2026-01-19 12:55:30,796 - INFO - Saved article: Trump links Greenland dispute to not getting Nobel Peace Prize from BBC
+2026-01-19 12:55:30,973 - INFO - [The Guardian] Article: https://www.theguardian.com/world/2026/jan/18/chile-president-declares-state-of-catastrophe-as-wildfires-kill
+2026-01-19 12:55:30,973 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:31,058 - INFO - [The Guardian] Success with 'requests_browser'. Found content (475 words).
+2026-01-19 12:55:31,166 - INFO - Duplicate article skipped: Chilean president declares state of catastrophe as wildfires kill at least 18 | Chile | The Guardian from The Guardian
+2026-01-19 12:55:31,694 - INFO - [The Hindu] Page content loaded.
+2026-01-19 12:55:31,920 - INFO - [The Hindu] Success with 'selenium_browser'. Found content (225 words).
+2026-01-19 12:55:32,056 - INFO - [BBC] Article: https://www.bbc.com/news/articles/c1dk0x0v6pdo?at_medium=RSS&at_campaign=rss
+2026-01-19 12:55:32,056 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:32,075 - INFO - Saved article: Workshop on guarantee schemes in Shivamogga on January 21 - The Hindu from The Hindu
+2026-01-19 12:55:32,116 - INFO - [BBC] Success with 'requests_browser'. Found content (781 words).
+2026-01-19 12:55:32,263 - INFO - [The Guardian] Article: https://www.theguardian.com/us-news/2026/jan/16/trump-administration-mistake-college-student-detained
+2026-01-19 12:55:32,264 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:32,289 - INFO - Saved article: Japan PM Takaichi calls snap election three months after taking office from BBC
+2026-01-19 12:55:32,586 - INFO - [The Guardian] Success with 'requests_browser'. Found content (758 words).
+2026-01-19 12:55:32,811 - INFO - [The Hindu] Article: https://www.thehindu.com/newsletter/karnataka-today/here-are-the-big-stories-from-karnataka-today/article70525368.ece
+2026-01-19 12:55:32,811 - INFO - [The Hindu] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2026-01-19 12:55:32,946 - INFO - Duplicate article skipped: Trump administration says deporting college student trying to surprise family was a ‘mistake’ | US immigration | The Guardian from The Guardian
+2026-01-19 12:55:33,299 - INFO - [BBC] Article: https://www.bbc.com/news/articles/c79r7v7qr53o?at_medium=RSS&at_campaign=rss
+2026-01-19 12:55:33,299 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:33,541 - INFO - [BBC] Success with 'requests_browser'. Found content (492 words).
+2026-01-19 12:55:33,793 - INFO - Saved article: China's birth rate hits record low as population continues to shrink from BBC
+2026-01-19 12:55:33,907 - INFO - [The Guardian] Article: https://www.theguardian.com/world/2026/jan/16/cia-chief-visits-maduro-successor-as-machado-vows-to-become-venezuelas-president
+2026-01-19 12:55:33,907 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:34,134 - INFO - [The Guardian] Success with 'requests_browser'. Found content (906 words).
+2026-01-19 12:55:34,347 - INFO - [BBC] Article: https://www.bbc.com/sport/football/articles/c70ljednyl6o?at_medium=RSS&at_campaign=rss
+2026-01-19 12:55:34,363 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:34,379 - INFO - Duplicate article skipped: CIA chief visits Maduro successor as Machado vows to become Venezuela’s president | Venezuela | The Guardian from The Guardian
+2026-01-19 12:55:34,643 - INFO - [BBC] Success with 'requests_browser'. Found content (1529 words).
+2026-01-19 12:55:34,951 - INFO - Saved article: Afcon final: Senegal temporarily leave field after Morocco awarded controversial penalty - BBC Sport from BBC
+2026-01-19 12:55:35,137 - INFO - [The Guardian] Article: https://www.theguardian.com/world/2026/jan/16/brazil-jair-bolsonaro-reduce-sentence-reading-books
+2026-01-19 12:55:35,137 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:35,208 - INFO - [The Guardian] Success with 'requests_browser'. Found content (406 words).
+2026-01-19 12:55:35,382 - INFO - Duplicate article skipped: Brazil’s Bolsonaro finds novel way to reduce 27-year sentence: reading books | Jair Bolsonaro | The Guardian from The Guardian
+2026-01-19 12:55:35,518 - INFO - [BBC] Article: https://www.bbc.com/news/articles/ceqz0llpnyqo?at_medium=RSS&at_campaign=rss
+2026-01-19 12:55:35,518 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:35,658 - INFO - [BBC] Success with 'requests_browser'. Found content (928 words).
+2026-01-19 12:55:35,792 - INFO - Duplicate article skipped: 'Europe won't be blackmailed,' Danish PM says in wake of Trump Greenland threats from BBC
+2026-01-19 12:55:35,984 - INFO - [The Guardian] Article: https://www.theguardian.com/world/2026/jan/16/china-canada-partnership-new-global-realities-carney-xi-jinping
+2026-01-19 12:55:35,984 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:36,101 - INFO - [The Guardian] Success with 'requests_browser'. Found content (608 words).
+2026-01-19 12:55:36,211 - INFO - Duplicate article skipped: Canada PM hails strategic partnership with China to adapt to ‘new global realities’ | Canada | The Guardian from The Guardian
+2026-01-19 12:55:36,380 - INFO - [BBC] Article: https://www.bbc.com/news/articles/c8013p5v2yvo?at_medium=RSS&at_campaign=rss
+2026-01-19 12:55:36,380 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:36,439 - INFO - [BBC] Success with 'requests_browser'. Found content (459 words).
+2026-01-19 12:55:36,679 - INFO - Saved article: Australia: Two seriously injured as Sydney sees string of shark attacks from BBC
+2026-01-19 12:55:36,718 - INFO - [The Guardian] Article: https://www.theguardian.com/world/2026/jan/19/china-population-falls-again-birthrate-record-low
+2026-01-19 12:55:36,719 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:36,987 - INFO - [The Guardian] Success with 'requests_browser'. Found content (883 words).
+2026-01-19 12:55:37,117 - INFO - [The Hindu] Page content loaded.
+2026-01-19 12:55:37,133 - INFO - Saved article: China’s population falls again as birthrate drops 17% to record low | China | The Guardian from The Guardian
+2026-01-19 12:55:37,384 - INFO - [BBC] Article: https://www.bbc.com/news/articles/cz7ypw4rjrzo?at_medium=RSS&at_campaign=rss
+2026-01-19 12:55:37,384 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:37,530 - INFO - [BBC] Success with 'requests_browser'. Found content (283 words).
+2026-01-19 12:55:37,782 - INFO - Duplicate article skipped: Chile declares 'state of catastrophe' as wildfires leave at least 18 dead from BBC
+2026-01-19 12:55:37,793 - INFO - [The Hindu] Success with 'selenium_browser'. Found content (525 words).
+2026-01-19 12:55:37,944 - INFO - Saved article: Here are the big stories from Karnataka today - The Hindu from The Hindu
+2026-01-19 12:55:38,197 - INFO - [The Guardian] Article: https://www.theguardian.com/world/2026/jan/19/japan-snap-election-sanae-takaichi-ldp
+2026-01-19 12:55:38,197 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:38,284 - INFO - [The Guardian] Success with 'requests_browser'. Found content (714 words).
+2026-01-19 12:55:38,402 - INFO - Saved article: Japan’s prime minister calls snap election as approval ratings ride high | Japan | The Guardian from The Guardian
+2026-01-19 12:55:38,507 - INFO - [BBC] Article: https://www.bbc.com/news/articles/c5y2pg28lgjo?at_medium=RSS&at_campaign=rss
+2026-01-19 12:55:38,507 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:38,588 - INFO - [BBC] Success with 'requests_browser'. Found content (188 words).
+2026-01-19 12:55:38,719 - INFO - Duplicate article skipped: China: Factory explosion in Inner Mongolia province kills four, injures 84 from BBC
+2026-01-19 12:55:39,193 - INFO - [The Hindu] Article: https://www.thehindu.com/news/national/uae-president-sheikh-mohamed-bin-zayed-al-nahyan-visit-to-india-on-january-19/article70525386.ece
+2026-01-19 12:55:39,193 - INFO - [The Hindu] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2026-01-19 12:55:39,476 - INFO - [The Guardian] Article: https://www.theguardian.com/world/2026/jan/19/chinas-economy-hit-growth-goal-last-year-despite-trump-trade-war-and-property-crisis
+2026-01-19 12:55:39,476 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:39,753 - INFO - [The Guardian] Success with 'requests_browser'. Found content (583 words).
+2026-01-19 12:55:39,966 - INFO - Saved article: China’s economy hit growth target last year despite Trump trade war and property crisis | Chinese economy | The Guardian from The Guardian
+2026-01-19 12:55:40,095 - INFO - [BBC] Article: https://www.bbc.com/news/articles/c4gwk37ewvwo?at_medium=RSS&at_campaign=rss
+2026-01-19 12:55:40,095 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:40,249 - INFO - [BBC] Success with 'requests_browser'. Found content (479 words).
+2026-01-19 12:55:40,436 - INFO - Duplicate article skipped: Syria, SDF agree ceasefire and integration deal from BBC
+2026-01-19 12:55:40,637 - INFO - [The Guardian] Article: https://www.theguardian.com/politics/2026/jan/19/china-expected-to-get-london-embassy-go-ahead-uk
+2026-01-19 12:55:40,637 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:40,813 - INFO - [The Guardian] Success with 'requests_browser'. Found content (956 words).
+2026-01-19 12:55:41,018 - INFO - Saved article: China expected to get London embassy go-ahead this week after years of wrangling | Planning policy | The Guardian from The Guardian
+2026-01-19 12:55:41,599 - INFO - [BBC] Article: https://www.bbc.com/news/articles/c74v0pxg2nvo?at_medium=RSS&at_campaign=rss
+2026-01-19 12:55:41,601 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:41,673 - INFO - [The Guardian] Article: https://www.theguardian.com/world/2026/jan/19/japan-nuclear-plant-restart-kashiwazaki-kariwa-fukushima
+2026-01-19 12:55:41,673 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:41,815 - INFO - [BBC] Success with 'requests_browser'. Found content (473 words).
+2026-01-19 12:55:42,029 - INFO - [The Guardian] Success with 'requests_browser'. Found content (1134 words).
+2026-01-19 12:55:42,038 - INFO - Duplicate article skipped: Around 1,500 soldiers on standby for deployment to Minneapolis, reports say from BBC
+2026-01-19 12:55:42,356 - INFO - Saved article: 15 years after Fukushima, Japan prepares to restart the world’s biggest nuclear plant | Japan | The Guardian from The Guardian
+2026-01-19 12:55:42,716 - INFO - [BBC] Article: https://www.bbc.com/news/articles/cd0y453yd90o?at_medium=RSS&at_campaign=rss
+2026-01-19 12:55:42,716 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:42,848 - INFO - [BBC] Success with 'requests_browser'. Found content (654 words).
+2026-01-19 12:55:42,995 - INFO - Duplicate article skipped: Israel pushes back on Trump's picks for executives on Gaza 'Board of Peace' from BBC
+2026-01-19 12:55:43,629 - INFO - [The Guardian] Article: https://www.theguardian.com/australia-news/2026/jan/19/labor-coalition-deal-hate-speech-laws-ley-albanese
+2026-01-19 12:55:43,630 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:43,763 - INFO - [BBC] Article: https://www.bbc.com/news/articles/clye22ljxw4o?at_medium=RSS&at_campaign=rss
+2026-01-19 12:55:43,763 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:43,847 - INFO - [BBC] Success with 'requests_browser'. Found content (699 words).
+2026-01-19 12:55:43,953 - INFO - Saved article: What we know about Spain's worst train disaster in over a decade from BBC
+2026-01-19 12:55:44,304 - INFO - [The Guardian] Success with 'requests_browser'. Found content (727 words).
+2026-01-19 12:55:44,681 - INFO - Saved article: Labor’s hate speech laws set to pass as Ley and Albanese cut deal on bill crafted in wake of Bondi terror attack | Australian politics | The Guardian from The Guardian
+2026-01-19 12:55:45,074 - INFO - [BBC] Article: https://www.bbc.com/news/articles/c87r41j4n4jo?at_medium=RSS&at_campaign=rss
+2026-01-19 12:55:45,074 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:45,344 - INFO - [BBC] Success with 'requests_browser'. Found content (450 words).
+2026-01-19 12:55:45,492 - INFO - Duplicate article skipped: Greenland: EU weighs response to Trump after tariff threat from BBC
+2026-01-19 12:55:45,716 - INFO - [The Guardian] Article: https://www.theguardian.com/australia-news/2026/jan/19/man-in-critical-condition-after-third-sydney-shark-attack-in-two-days
+2026-01-19 12:55:45,716 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:45,777 - INFO - [The Guardian] Success with 'requests_browser'. Found content (695 words).
+2026-01-19 12:55:45,850 - INFO - Saved article: Man in critical condition after third Sydney shark attack in two days | Sydney | The Guardian from The Guardian
+2026-01-19 12:55:46,638 - INFO - [BBC] Article: https://www.bbc.com/news/articles/ce3ekz4yx21o?at_medium=RSS&at_campaign=rss
+2026-01-19 12:55:46,638 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:46,677 - INFO - [BBC] Success with 'requests_browser'. Found content (382 words).
+2026-01-19 12:55:46,727 - INFO - Saved article: Afcon final: Senegal's ecstasy and Morocco's devastation - a fans' view of football final from BBC
+2026-01-19 12:55:46,874 - INFO - [The Guardian] Article: https://www.theguardian.com/australia-news/live/2026/jan/19/federal-parliament-returns-gun-control-measures-hate-speech-laws-anthony-albanese-labor-sussan-ley-coalition-greens-trump-board-for-peace-ntwnfb
+2026-01-19 12:55:46,874 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:47,126 - INFO - [The Guardian] Success with 'requests_browser'. Found content (2501 words).
+2026-01-19 12:55:47,224 - INFO - Duplicate article skipped: Hanson reveals ambition to turn One Nation into viable party of government after record poll showing – as it happened | Australian politics | The Guardian from The Guardian
+2026-01-19 12:55:47,300 - INFO - [BBC] Article: https://www.bbc.com/news/articles/c0q48d71ke8o?at_medium=RSS&at_campaign=rss
+2026-01-19 12:55:47,300 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:47,338 - INFO - [BBC] Success with 'requests_browser'. Found content (978 words).
+2026-01-19 12:55:47,382 - INFO - Duplicate article skipped: Why the US is buying icebreakers from Finland from BBC
+2026-01-19 12:55:47,922 - INFO - [BBC] Article: https://www.bbc.com/news/articles/cx2w9q28xjxo?at_medium=RSS&at_campaign=rss
+2026-01-19 12:55:47,922 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:47,978 - INFO - [BBC] Success with 'requests_browser'. Found content (1402 words).
+2026-01-19 12:55:48,029 - INFO - Duplicate article skipped: How West African traffickers are trading on QNET's name - one man's search for his lost children from BBC
+2026-01-19 12:55:48,537 - INFO - [BBC] Article: https://www.bbc.com/news/articles/cg5gegrdq3go?at_medium=RSS&at_campaign=rss
+2026-01-19 12:55:48,537 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:48,619 - INFO - [BBC] Success with 'requests_browser'. Found content (1182 words).
+2026-01-19 12:55:48,656 - INFO - [The Guardian] Article: https://www.theguardian.com/australia-news/2026/jan/19/south-australia-adelaide-fires-bushfires-burn-smoke-warnings-residents-evacuated
+2026-01-19 12:55:48,656 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:48,741 - INFO - Duplicate article skipped: Fears Iran's internet shutdown could lead to 'extreme digital isolation' from BBC
+2026-01-19 12:55:48,783 - INFO - [The Guardian] Success with 'requests_browser'. Found content (626 words).
+2026-01-19 12:55:48,942 - INFO - Saved article: ‘We could see the glow and smell the smoke’: residents warned as fires burn south of Adelaide | South Australia | The Guardian from The Guardian
+2026-01-19 12:55:49,653 - INFO - [BBC] Article: https://www.bbc.com/news/videos/c23r1rx5vp7o?at_medium=RSS&at_campaign=rss
+2026-01-19 12:55:49,653 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:49,807 - INFO - [BBC] Success with 'requests_browser'. Found content (81 words).
+2026-01-19 12:55:49,951 - INFO - Duplicate article skipped: Spain train crash survivors describe 'absolutely terrifying' scene from BBC
+2026-01-19 12:55:50,083 - INFO - [The Guardian] Article: https://www.theguardian.com/australia-news/2026/jan/19/sydney-shark-attack-boy-nielsen-park-water-conditions
+2026-01-19 12:55:50,083 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:50,274 - INFO - [The Guardian] Success with 'requests_browser'. Found content (725 words).
+2026-01-19 12:55:50,469 - INFO - Duplicate article skipped: Sydney Harbour shark attack: second incident in two days as police warn against swimming | Sydney | The Guardian from The Guardian
+2026-01-19 12:55:50,940 - INFO - [BBC] Article: https://www.bbc.com/news/videos/c8e5y604x5go?at_medium=RSS&at_campaign=rss
+2026-01-19 12:55:50,940 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:51,030 - INFO - [The Guardian] Article: https://www.theguardian.com/world/live/2026/jan/19/spain-train-crash-rescue-cordoba-latest-news-updates
+2026-01-19 12:55:51,030 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:51,039 - INFO - [BBC] Success with 'requests_browser'. Found content (99 words).
+2026-01-19 12:55:51,365 - INFO - Saved article: Watch: Footage inside Spanish train as passengers evacuate from crash from BBC
+2026-01-19 12:55:51,528 - INFO - [The Guardian] Success with 'requests_browser'. Found content (2073 words).
+2026-01-19 12:55:51,736 - INFO - Saved article: Spain train crash: rescue efforts continue as death toll rises in Córdoba crash – latest updates | Spain | The Guardian from The Guardian
+2026-01-19 12:55:52,707 - INFO - [BBC] Article: https://www.bbc.com/news/videos/cy054r4l953o?at_medium=RSS&at_campaign=rss
+2026-01-19 12:55:52,707 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:52,758 - INFO - [BBC] Success with 'requests_browser'. Found content (84 words).
+2026-01-19 12:55:52,806 - INFO - Saved article: Man swims in flooded Sydney golf course after heavy rain from BBC
+2026-01-19 12:55:53,077 - INFO - [The Guardian] Article: https://www.theguardian.com/world/live/2026/jan/19/donald-trump-greenland-denmark-nobel-nato-europe-live-latest-news-updates
+2026-01-19 12:55:53,077 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:53,308 - INFO - [The Guardian] Success with 'requests_browser'. Found content (1786 words).
+2026-01-19 12:55:53,396 - INFO - Saved article: EU has ‘tools at its disposal’ to deal with Trump’s Greenland tariff threats – Europe live | World news | The Guardian from The Guardian
+2026-01-19 12:55:53,803 - INFO - [BBC] Article: https://www.bbc.com/news/videos/cwy8l21312do?at_medium=RSS&at_campaign=rss
+2026-01-19 12:55:53,804 - INFO - [BBC] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:53,851 - INFO - [BBC] Success with 'requests_browser'. Found content (123 words).
+2026-01-19 12:55:53,899 - INFO - Saved article: Watch: Timelapse shows Nasa rocket's 12-hour journey to launch pad from BBC
+2026-01-19 12:55:54,029 - INFO - [The Guardian] Article: https://www.theguardian.com/world/2026/jan/19/i-was-afraid-for-my-life-the-transgender-refugees-fleeing-trumps-america
+2026-01-19 12:55:54,029 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:54,061 - INFO - [The Guardian] Success with 'requests_browser'. Found content (1829 words).
+2026-01-19 12:55:54,108 - INFO - Saved article: ‘I was afraid for my life’: the transgender refugees fleeing Trump’s America | Refugees | The Guardian from The Guardian
+2026-01-19 12:55:54,788 - INFO - [The Guardian] Article: https://www.theguardian.com/politics/2026/jan/19/greenland-keir-starmer-rules-out-retaliatory-tariffs-against-us
+2026-01-19 12:55:54,788 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:54,955 - INFO - [The Guardian] Success with 'requests_browser'. Found content (726 words).
+2026-01-19 12:55:55,004 - INFO - Saved article: Starmer plays down retaliatory tariffs against US over Greenland | Keir Starmer | The Guardian from The Guardian
+2026-01-19 12:55:56,160 - INFO - [The Guardian] Article: https://www.theguardian.com/world/2026/jan/19/kremlin-says-putin-invited-join-trump-gaza-board-of-peace
+2026-01-19 12:55:56,160 - INFO - [The Guardian] Attempt 1/1: Trying with 'requests_browser' strategy...
+2026-01-19 12:55:56,335 - INFO - [The Guardian] Success with 'requests_browser'. Found content (627 words).
+2026-01-19 12:55:56,378 - INFO - Saved article: Kremlin says Putin has been invited to join Trump’s Gaza ‘board of peace’ | Vladimir Putin | The Guardian from The Guardian
+2026-01-19 12:57:27,015 - ERROR - [Times of India] Request failed for strategy 'selenium_browser' on URL https://timesofindia.indiatimes.com/world/us/indian-origin-fedex-ceo-raj-subramaniam-breaks-silence-on-h-1b-row-says-we-are-a-meritocracy/articleshow/126678367.cms: HTTPConnectionPool(host='localhost', port=57287): Read timed out. (read timeout=120)
+2026-01-19 12:57:27,015 - ERROR - [Times of India] All scrape strategies failed for https://timesofindia.indiatimes.com/world/us/indian-origin-fedex-ceo-raj-subramaniam-breaks-silence-on-h-1b-row-says-we-are-a-meritocracy/articleshow/126678367.cms. Falling back to RSS description.
+2026-01-19 12:57:27,017 - INFO - Saved article: Indian-origin FedEx CEO Raj Subramaniam breaks silence on H-1B row, says, 'We are a meritocracy' from Times of India
+2026-01-19 12:57:27,651 - INFO - [Times of India] Article: https://timesofindia.indiatimes.com/world/south-asia/15000-bond-for-us-b1/b2-visas-bangladeshis-warned-by-us-embassy-ahead-of-january-21/articleshow/126678384.cms
+2026-01-19 12:57:27,651 - INFO - [Times of India] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2026-01-19 12:57:39,284 - ERROR - [The Hindu] Request failed for strategy 'selenium_browser' on URL https://www.thehindu.com/news/national/uae-president-sheikh-mohamed-bin-zayed-al-nahyan-visit-to-india-on-january-19/article70525386.ece: HTTPConnectionPool(host='localhost', port=44235): Read timed out. (read timeout=120)
+2026-01-19 12:57:39,284 - ERROR - [The Hindu] All scrape strategies failed for https://www.thehindu.com/news/national/uae-president-sheikh-mohamed-bin-zayed-al-nahyan-visit-to-india-on-january-19/article70525386.ece. Falling back to RSS description.
+2026-01-19 12:57:39,286 - INFO - Saved article: UAE President Al Nahyan arrives in India from The Hindu
+2026-01-19 12:57:40,658 - INFO - [The Hindu] Article: https://www.thehindu.com/podcast/in-focus-podcast-jana-nayagan-vs-the-cbfc-what-goes-behind-censoring-720-hours-of-film/article70525136.ece
+2026-01-19 12:57:40,658 - INFO - [The Hindu] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2026-01-19 12:59:27,752 - ERROR - [Times of India] Request failed for strategy 'selenium_browser' on URL https://timesofindia.indiatimes.com/world/south-asia/15000-bond-for-us-b1/b2-visas-bangladeshis-warned-by-us-embassy-ahead-of-january-21/articleshow/126678384.cms: HTTPConnectionPool(host='localhost', port=57287): Read timed out. (read timeout=120)
+2026-01-19 12:59:27,752 - ERROR - [Times of India] All scrape strategies failed for https://timesofindia.indiatimes.com/world/south-asia/15000-bond-for-us-b1/b2-visas-bangladeshis-warned-by-us-embassy-ahead-of-january-21/articleshow/126678384.cms. Falling back to RSS description.
+2026-01-19 12:59:27,754 - INFO - Saved article: $15,000 bond for US B1/B2 visas: Bangladeshis warned by US embassy ahead of January 21 from Times of India
+2026-01-19 12:59:28,707 - INFO - [Times of India] Article: https://timesofindia.indiatimes.com/world/us/whats-open-whats-closed-on-martin-luther-king-jr-day-2026-in-the-us-banks-schools-post-offices-markets-ups-fedex-mail-and-more/articleshow/126676811.cms
+2026-01-19 12:59:28,707 - INFO - [Times of India] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2026-01-19 12:59:40,750 - ERROR - [The Hindu] Request failed for strategy 'selenium_browser' on URL https://www.thehindu.com/podcast/in-focus-podcast-jana-nayagan-vs-the-cbfc-what-goes-behind-censoring-720-hours-of-film/article70525136.ece: HTTPConnectionPool(host='localhost', port=44235): Read timed out. (read timeout=120)
+2026-01-19 12:59:40,751 - ERROR - [The Hindu] All scrape strategies failed for https://www.thehindu.com/podcast/in-focus-podcast-jana-nayagan-vs-the-cbfc-what-goes-behind-censoring-720-hours-of-film/article70525136.ece. Falling back to RSS description.
+2026-01-19 12:59:40,752 - INFO - Saved article: In Focus Podcast | ‘Jana Nayagan’ vs. the CBFC: What goes behind censoring 720 hours of film? from The Hindu
+2026-01-19 12:59:42,171 - INFO - [The Hindu] Article: https://www.thehindu.com/news/national/spanish-train-collision-eam-jaishankar-expresses-grief/article70525322.ece
+2026-01-19 12:59:42,171 - INFO - [The Hindu] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2026-01-19 13:01:28,746 - ERROR - [Times of India] Request failed for strategy 'selenium_browser' on URL https://timesofindia.indiatimes.com/world/us/whats-open-whats-closed-on-martin-luther-king-jr-day-2026-in-the-us-banks-schools-post-offices-markets-ups-fedex-mail-and-more/articleshow/126676811.cms: HTTPConnectionPool(host='localhost', port=57287): Read timed out. (read timeout=120)
+2026-01-19 13:01:28,746 - ERROR - [Times of India] All scrape strategies failed for https://timesofindia.indiatimes.com/world/us/whats-open-whats-closed-on-martin-luther-king-jr-day-2026-in-the-us-banks-schools-post-offices-markets-ups-fedex-mail-and-more/articleshow/126676811.cms. Falling back to RSS description.
+2026-01-19 13:01:28,748 - INFO - Saved article: What’s open, what’s closed on Martin Luther King Jr Day 2026 in the US: Banks, schools, post offices, markets, UPS, FedEx, mail and more from Times of India
+2026-01-19 13:01:29,407 - INFO - [Times of India] Article: https://timesofindia.indiatimes.com/world/rest-of-world/norway-is-building-the-worlds-deepest-and-longest-road-tunnel-nearly-400-metres-below-the-sea/articleshow/126677117.cms
+2026-01-19 13:01:29,407 - INFO - [Times of India] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2026-01-19 13:01:42,255 - ERROR - [The Hindu] Request failed for strategy 'selenium_browser' on URL https://www.thehindu.com/news/national/spanish-train-collision-eam-jaishankar-expresses-grief/article70525322.ece: HTTPConnectionPool(host='localhost', port=44235): Read timed out. (read timeout=120)
+2026-01-19 13:01:42,256 - ERROR - [The Hindu] All scrape strategies failed for https://www.thehindu.com/news/national/spanish-train-collision-eam-jaishankar-expresses-grief/article70525322.ece. Falling back to RSS description.
+2026-01-19 13:01:42,258 - INFO - Saved article: Spanish train collision: EAM Jaishankar expresses grief from The Hindu
+2026-01-19 13:01:42,764 - INFO - [The Hindu] Article: https://www.thehindu.com/news/national/kerala/kannur-cyber-police-nab-punjab-man-for-duping-doctor-of-105-lakh-in-digital-arrest-scam/article70525193.ece
+2026-01-19 13:01:42,764 - INFO - [The Hindu] Attempt 1/1: Trying with 'selenium_browser' strategy...
+2026-01-19 13:02:25,527 - CRITICAL - --- TIMEOUT: 2 scrape jobs did not complete in 420s. ---
+2026-01-19 13:02:25,527 - ERROR - A thread has timed out and will be abandoned.
+2026-01-19 13:02:25,527 - ERROR - A thread has timed out and will be abandoned.
+2026-01-19 13:02:25,527 - INFO - Shutting down thread pool (wait=False)...
+2026-01-19 13:02:25,527 - INFO - Scraped: 13 The Guardian, 13 BBC, 2 Timed_Out_Jobs articles. (Total saved: 26)
+2026-01-19 13:02:25,527 - INFO - --- Scraping job finished ---
+2026-01-19 13:02:25,528 - INFO - --- Scraper service stopped and database connection closed. ---
+2026-01-19 13:02:25,528 - INFO - --- Main thread finished. Forcing process exit to kill zombie threads. ---
